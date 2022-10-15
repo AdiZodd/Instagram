@@ -7,6 +7,7 @@ let currentUser = 'admirkozlica';
 let suggestedUsersImg = ['images/suggestionImg/1.jpg', 'images/suggestionImg/2.jpg', 'images/suggestionImg/3.jpg', 'images/suggestionImg/4.jpg', 'images/suggestionImg/5.jpg'];
 let suggestedUsersName = ['missemma', 'getafter.it', 'gordanfreeman', 'mynameis.cat', 'lisa'];
 let emojiArray =['😀','&#128513','&#128514', '&#128515', '&#128516', '&#128517', '&#128518', '&#128519', '&#128520', '&#128521', '&#128522', '&#128523', '&#128524', '&#128525', '&#128526', '&#128527', '&#128528', '&#128529', '&#128530', '&#128531', '&#128532', '&#128533', '&#128534', '&#128535', '&#128536', '&#128537', '&#128538', '&#128539','&#128540', '&#128541','&#128542','&#128543', '&#128544','&#128545','&#128546', '&#128547','&#128548','&#128549','&#128550','&#128551','&#128552','&#128553','&#128554','&#128555','&#128556','&#128557','&#128558','&#128559','&#128560','&#128561','&#128562','&#128563','&#128564','&#128565','&#128566','&#128567'];
+let currentActiceEmoji = '';
 
 let usersPost = [{
     "author": arrayUserName[0],
@@ -181,7 +182,7 @@ function insertPost(){
                                     </div>
                                 </div>
                             </div>                        
-                            <a onclick="openEmojiPicker('enterEmoji${i}','${i}')"><i class="far fa-smile"></i></a>
+                            <a onclick="openEmojiPicker('enterEmoji${i}','${i}'), preventsClosing(event)"><i class="far fa-smile"></i></a>
                         </div>
                         <input type="text" oninput="checkIfCommentInputIsFilled('${i}')" placeholder="Add a comment..." id="commentInput${i}" class="commentInput">
                         <button class="postComment" id="postComment${i}" onclick="submitComment('${i}')" disabled>Post</button>
@@ -324,15 +325,10 @@ function checkIfCommentInputIsFilled(i){
 // Sets the correct emojiContainer to active
 function openEmojiPicker(emojiIndex, i){
     displayEmoji(emojiIndex, i);
-    let emojicContainer = document.getElementById(emojiIndex);
-    emojicContainer.classList.toggle('active');
-}
+    savesTheCurrentDisplayedEmojiInAVariable(emojiIndex);
 
-
-// 'indexofInputField' is being passed over by the function displayEmoji. First the function inserts the emoji into the correct input field and then it checks if the input is filled
-function getEmoji(selectedEmoji, indexofInputField){
-    document.getElementById(`commentInput${indexofInputField}`).value += `${selectedEmoji}`
-    checkIfCommentInputIsFilled(indexofInputField);
+    let emojiContainer = document.getElementById(emojiIndex);
+    emojiContainer.classList.toggle('active');
 }
 
 // Loops through the emojiArray to display the emojies in the emoji container
@@ -341,10 +337,37 @@ function displayEmoji(emojiIndex, indexOfSelectedPost){
     for (let i = 0; i < emojiArray.length; i++) {
         const element = emojiArray[i];
         document.getElementById(emojiIndex).innerHTML += `
-        <a class="emojiSize" onclick="getEmoji('${element}','${indexOfSelectedPost}')">${element}</a>
+        <a class="emojiSize" onclick="getEmoji('${element}','${indexOfSelectedPost}'), preventsClosing(event)">${element}</a>
     `
     }
 }
+
+function savesTheCurrentDisplayedEmojiInAVariable(emojiIndex){
+    currentActiceEmoji ='';
+    currentActiceEmoji = emojiIndex;
+}
+
+// 'indexofInputField' is being passed over by the function displayEmoji. First the function inserts the emoji into the correct input field and then it checks if the input is filled
+function getEmoji(selectedEmoji, indexofInputField){
+    document.getElementById(`commentInput${indexofInputField}`).value += `${selectedEmoji}`;
+    checkIfCommentInputIsFilled(indexofInputField);
+}
+//Closes the current active emojiBox when clicked on the body by using finding out its ID and removes the active
+//currentActiceEmoji is a variable that is being saved by the savesTheCurrentDisplayedEmojiInAVariable() function
+function closeEmojiBoxWhenClickedOutsideOfDiv(){
+    let emojiContainer = document.getElementById(currentActiceEmoji);
+    if(emojiContainer == null){
+
+    }else{
+        emojiContainer.classList.remove('active');
+    }
+}
+
+//If clicked on the desired div container it prevents any other functions from intervening
+function preventsClosing(event){
+    event.stopPropagation();
+}
+
 
 
 function fillorUnfillLikeBtn(index, i){
