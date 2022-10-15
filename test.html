@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .emojiContainer{
+            background-color: aliceblue;
+            width: 264px;
+            margin-top: 50px;
+            padding-bottom: 12px;
+            display:flex;
+            flex-wrap: wrap;
+            animation: heightIncrease 1s ease-in-out forwards;
+            box-shadow: 0px 0px 10px -3px;
+            overflow: auto;
+            scrollbar-width: none;
+            display: none;
+            
+        }
+
+        .emojiContainer::after{
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0px;
+            left: 2px;
+            transform: translateY(100%);
+            border-top: 12px solid aliceblue;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            z-index: 20;
+            filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.1));
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        .emojiWrapper{
+            position: relative;
+        }
+
+
+        @keyframes heightIncrease{
+            0%{
+                height: 0;
+            }
+            100%{
+                height: 200px;
+            }
+        }
+
+        @keyframes fadeIn{
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+
+        @keyframes newPostAnim{
+            0%{
+                background-color: grey;
+                color: transparent;
+            }
+            25%{
+                background-color: grey;
+                color: black;
+            }
+            100%{
+                background-color: white;
+                color: black;
+            }
+        }
+
+        .emojiSize{
+            font-size: 2em;
+        }
+
+        a{
+            cursor: pointer;
+        }
+
+
+        .newPost{
+            animation: newPostAnim 525ms ease-in-out;
+        }
+
+    </style>
+    <script>
+        let emojiArray =['😀','&#128513','&#128514', '&#128515', '&#128516', '&#128517', '&#128518', '&#128519', '&#128520', '&#128521', '&#128522', '&#128523', '&#128524', '&#128525', '&#128526', '&#128527', '&#128528', '&#128529', '&#128530', '&#128531', '&#128532', '&#128533', '&#128534', '&#128535', '&#128536', '&#128537', '&#128538', '&#128539','&#128540', '&#128541','&#128542','&#128543', '&#128544','&#128545','&#128546', '&#128547','&#128548','&#128549','&#128550','&#128551','&#128552','&#128553','&#128554','&#128555','&#128556','&#128557','&#128558','&#128559','&#128560','&#128561','&#128562','&#128563','&#128564','&#128565','&#128566','&#128567'];
+
+        function displayEmoji(){
+            for (let i = 0; i < emojiArray.length; i++) {
+                const element = emojiArray[i];
+                document.getElementById('enterEmoji').innerHTML += `
+                <a class="emojiSize" onclick="getEmoji('${element}')">${element}</a>
+            `
+                
+            }
+            
+        }
+
+        function getEmoji(selectedEmoji){
+            document.getElementById('inputField').value += `${selectedEmoji}`
+        }
+
+    </script>
+</head>
+<body onload="displayEmoji()">
+    <div class="emojiWrapper">
+        <div class="emojiContainer" id="enterEmoji">
+        </div>
+    </div>
+
+    <input type="text" id="inputField">
+
+    <p class="newPost">very good text</p>
+    
+    
+    
+</body>
+</html>
+
+<!-- /* content: '';
+            display: block;
+            position: absolute;
+            bottom: 0px;
+            left: 0.3rem;
+            transform: translateY(100%);
+            border-top: 12px solid #ffffff;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            z-index: 20;
+            background-color: aliceblue;
+            filter: drop-shadow(2px 2px 2px); */ -->

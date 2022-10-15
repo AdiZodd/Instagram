@@ -1,0 +1,582 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+body{
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #262626;
+    scroll-behavior: smooth;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #dbdbdb;
+    height: 60px;
+    padding-left: 5%;
+    padding-right: 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.headerPositionContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 950px;
+}
+
+header i {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 1.3em;
+}
+
+header img{
+    width: 103px;
+    height: 40px;
+}
+
+.posRelative{
+    position: relative;
+}
+
+.imgPaddingRight{
+    width: 40%;
+}
+
+.inputWithIcon{
+    position: relative;
+}.inputWithIcon input[type="text"]{
+    padding-left: 48px;
+    border-radius: 12px;
+    height: 36px;
+    width: calc(268px - 48px);
+    font-size: 1em;
+    background-color: #efefef;
+    color: #8e8e8e;
+    border: transparent;
+    font-weight: 100;
+}    .inputWithIcon .fa-search{
+        position: absolute;
+        top: 11px;
+        left: 0px;
+        padding-left: 20px;
+        font-size: 1em;
+        color: #8e8e8e;
+    }.inputWithIcon .fa-times-circle{
+        display: none;
+        position: absolute;
+        top: 11px;
+        right: 0px;
+        padding-right: 20px;
+        font-size: 1em;
+        color: #8e8e8e;
+        z-index: 2;
+        cursor: pointer;
+    }.inputWithIcon input[type="text"].active{
+        padding-left: 12px;
+        width: calc(268px - 12px);
+    }    .inputWithIcon input[type="text"].active ~ .fa-times-circle{
+            display: unset;
+        }.inputWithIcon input[type="text"].active ~ .fa-times-circle:hover{
+            color: black;
+        }.inputWithIcon input[type="text"].active ~ .fa-search{
+            display: none;
+        }
+.headerIconsWrapper{
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+}.profileUserIcon{
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    margin-left: 10px;
+}.profileUserIcon img{
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.mainContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafafa;
+    padding-left: 5%;
+    padding-right: 5%;
+}.mainWrapper{
+    width: 950px;
+    display: flex;
+    position: relative;
+}
+
+.userStories{
+    width: calc(614px - 30px);
+    height: 116px;
+    border: 1px solid #dbdbdb;
+    margin-bottom: 22px;
+    margin-top: 22px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow: auto;
+}.userIconAndNameContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    }.userStoryIcon{
+        width: 64px;
+        height: 64px;
+        border-radius: 100%;
+        background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        margin-left: 7px;
+        margin-right: 7px;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }.userStoryIcon img{
+        object-fit: cover;
+        width: 56px;
+        height: 56px;
+        border-radius: 100%;
+        border: 2.2px solid white;
+        
+    }
+
+.postsContainer{
+    margin-top: 22px;
+}.post{
+    border: 1px solid #dbdbdb;
+    min-height: 800px;
+    max-height: 1024px;
+    width: 614px;
+    border-radius: 3px;
+    margin-bottom: 22px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+    .likeIconAndImage{
+        fill: transparent;
+        stroke: whitesmoke;
+        stroke-width: 4px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }.likeIconAndImage img{
+        width: 614px;
+        height: 614px;
+        object-fit: cover;
+    }
+
+/* Heart SVG Style Start*/
+svg{
+    overflow: visible;
+    width: 164px;
+    height: 164px;
+}
+
+.heartFadeOut{
+    position: absolute;
+    z-index: 0;
+    stroke: none;
+    display: none;
+}
+.heartStroke{
+    position: absolute;
+    stroke-dashoffset: 1550;
+    stroke-dasharray: 1550;
+    display: none;
+}
+.heartStroke.active {
+    display: flex;
+    transform-origin: center;
+    animation: drawHeart 1s linear forwards,
+               drawHeartOut 2s 3s linear forwards;
+}
+
+.heartStroke.active ~ .heartFadeOut{
+    display: flex;
+    transform-origin: center;
+    animation: pushOutHeart 2s linear forwards,
+               pushOutHeartOut 2s 3s linear forwards;
+}
+/* Heart SVG Style End */
+
+/* Heart SVG KeyFrames Start */
+
+@keyframes drawHeart{
+    30% {
+        stroke-dashoffset: 1500;
+        
+    }
+    80%{
+        stroke-dashoffset: 0;
+        transform: scale(1);
+        fill: transparent;
+    }
+    90% {
+        stroke-dashoffset: 0;
+        transform: scale(1.05);
+    }
+    100% {
+        stroke-dashoffset: 0;
+        transform: scale(1.05);
+        fill: whitesmoke;
+    }
+}
+
+@keyframes drawHeartOut{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes pushOutHeart {
+70%{
+    fill: transparent;
+    transform: scale(1);
+    opacity: 0;
+}
+80%{
+    fill: whitesmoke;
+    transform: scale(1.5);
+    opacity: 1;
+}
+100%{
+    fill: whitesmoke;
+    transform: scale(2);
+    opacity: 0;
+}
+}
+
+@keyframes pushOutHeartOut {
+    0%{
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100%{
+        opacity: 0;
+        transform: scale(1.05);
+    }
+}
+
+/* Heart SVG KeyFrames End*/
+
+@keyframes newPostAnim{
+    0%{
+        background-color: grey;
+        color: transparent;
+    }
+    25%{
+        background-color: grey;
+        color: black;
+    }
+    100%{
+        background-color: white;
+        color: black;
+    }
+}
+
+.postHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}.userPostIcon{
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    margin-left: 14px;
+    margin-right: 12px;
+}.userPostIcon img{
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    object-fit: cover;
+}.fa-ellipsis-h{
+    padding-right: 14px;
+}.socialToolsContainer{
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}.socialToolsContainer i{
+    font-size: 1.5rem;
+}#rightPadding{
+    padding-right: 12px;
+}#likes{
+    margin-top: 12px;
+}.commentSection{
+    scrollbar-width:none;
+    max-height: 200px;
+    font-size: 14px;
+}.newPost{
+    animation: newPostAnim 525ms ease-in-out;
+}.userComment{
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    scrollbar-width:none;
+}.userComment span{
+    font-weight: 600;
+}.userCommentText {
+    margin: 0px;
+    margin-left: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}.userComment .noTextOverflow{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}.row{
+    display: flex;
+    align-items: flex-start;
+    line-height: 20px;
+}.enableOverflow{
+    overflow: unset;
+    text-overflow:ellipsis;
+    white-space: unset;
+}.socialToolsContainerSideSpacing {
+    padding-left: 2%;
+    padding-right: 2%;
+}.commentInputContainer{
+    border-top: 1px solid #efefef;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}.commentInput{
+    height: 40px;
+    border: transparent;
+    margin-left: 12px;
+    width: 100%;
+}.commentInput:focus{
+    outline: none;
+}
+.fa-smile{
+    font-size: 1.4em;
+}
+
+/* Emoji onclick picker Start */
+.emojiWrapper{
+    position: relative;
+}
+.emojiContainer{
+    background-color: white;
+    width: 264px;
+    margin-top: 50px;
+    padding: 2px;
+    padding-bottom: 12px;
+    flex-wrap: wrap;
+    animation: heightIncrease 225ms ease-in-out forwards;
+    box-shadow: 0px 0px 10px -3px;
+    overflow: auto;
+    scrollbar-width: none;
+    display: none;
+}
+.emojiContainer.active{
+    display: flex;
+}
+.emojiContainer::after{
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 1px;
+    transform: translateY(100%);
+    border-top: 12px solid white;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    z-index: 1;
+    filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.1));
+    opacity: 0;
+    animation: fadeIn 225ms ease-in forwards;
+}
+.emojiSize{
+    font-size: 2em;
+}
+
+.emojiPosAbsolute{
+    position: absolute;
+    left: -10px;
+    bottom: 0;
+    transform: translateY(-15%);
+}
+
+/* Emoji picker onclick End */
+
+/* Emoji picker keyframs Start*/
+@keyframes heightIncrease{
+    0%{
+        height: 0;
+        opacity: 0;
+    }
+    75%{
+        opacity: 1;
+    }
+    100%{
+        height: 200px;
+    }
+}
+
+@keyframes fadeIn{
+    15%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+/* Emoji picker keyframs End*/
+
+
+
+.postComment{
+    color: #0095F6;
+    background-color: white;
+    border: none;
+    font-size: 0.9em;
+    font-weight: 600;
+}.postComment:disabled{
+    color: #0094f652;
+}
+
+.userSuggestionsContainer{
+    position: sticky;
+    top: 61px;
+    height: 100vh;
+    margin-left: 28px;
+    padding-top: 22px;
+}.SuggestionsWrapper{
+    display: flex;
+    flex-direction: column;
+    
+    }.SuggestionsWrapperHeader{
+    height: 118px;
+    display: flex;
+    align-items: center;
+    position: relative;
+        }.userNameandIcon{
+            display: flex;
+            align-items: center;
+            margin-bottom: 21px;
+        }.userSuggestIcon{
+            width: 54px;
+            height: 54px;
+            border-radius: 100%;
+            border:  1px solid #dbdbdb;
+            margin-left: 7px;
+            margin-right: 7px;
+        }.userSuggestIcon img{
+            width: 54px;
+            height: 54px;
+            object-fit: cover;
+            border-radius: 100%;
+        }.NameAndBio{
+            font-size: 0.9em;
+        }.bio{
+            color: #8e8e8e;
+            font-size: 14px;
+        }.suggestionsText{
+            color: #0095F6;
+            margin-left: 92px;
+            font-size: 12px;
+        }.div{
+            position: absolute;
+            top: calc(118px - 21px);
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 12px;
+        }
+    .suggestionsContainer{
+        display: flex;
+        align-items: center;
+        padding-top: 22px;
+        justify-content: space-between;
+        }.otherUserSuggestIcon{
+            width: 32px;
+            height: 32px;
+            border-radius: 100%;
+            margin-left: 7px;
+            margin-right: 7px;
+        }.otherUserSuggestIcon img{
+            width: 32px;
+            height: 32px;
+            border-radius: 100%;
+        }.follow{
+            color: #0095F6;
+            font-size: 12px;
+        }.otherUserWrapper{
+            display: flex;
+            align-items: center;
+        }
+
+
+
+@media(max-width: 950px){
+    .userSuggestionsContainer{
+        display: none;
+    }
+    .mainWrapper{
+        justify-content: center;
+    }
+}
+
+@media(max-width: 695px){
+    .inputWithIcon{
+        display: none;
+    }
+    .mainWrapper{
+        width: 500px;
+    }
+    .contentContainer{
+        width: 100%;
+    }
+    .userStories{
+        width: calc(100% - 31px);
+    }
+    .post{
+        width: 100%;
+    }
+    .likeIconAndImage img{
+        width: 100%;
+    }
+}
+
+@media(max-width: 555px){
+    .mainWrapper{
+        width: 365px;
+    }
+}

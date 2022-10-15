@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/16b826ec6a.js" crossorigin="anonymous"></script> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+</head>
+<body onload="initWebsite()">
+    <header>
+        <div class="headerPositionContainer">
+            <div class="imgPaddingRight">
+                <img src="images/instaLogo.png" alt="">
+            </div>
+            <div class="inputWithIcon">
+                <input type="text" placeholder="Search" id="searchInput" onclick="tooglesActiveOnSearchInputWhenClicked('searchInput')" oninput="tooglesActiveOnSearchInputWhenClicked('searchInput')">
+                <i class="fas fa-search"></i>
+                <i class="far fa-times-circle" onclick="removeSearchInput('searchInput')"></i>
+            </div>
+            <div class="headerIconsWrapper">
+                <i class="fas fa-home"></i>
+                <i class="far fa-paper-plane"></i>
+                <i class="far fa-plus-square"></i>
+                <i class="far fa-compass"></i>
+                <i class="far fa-heart"></i>
+                <div class="profileUserIcon" id="insertUserImg">
+                    <!-- <img src="images/mainUserImg/1.jpg" alt=""> -->
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <section class="mainContent">
+        <div class="mainWrapper">
+            <div class="contentContainer">
+                <div class="userStories" id="insertImgStoryHere"></div>
+
+                <div class="postsContainer" id="insertPost">
+                    <div class="post">
+                            <div>
+                            <div class="postHeader">
+                                <div class="otherUserWrapper">
+                                    <div class="userPostIcon"></div>
+                                    <div class="NameAndBio">
+                                        <span><b>MyNameIsJeffThatIsCool</b></span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                            <img src="images/postImg1.jpg" alt="">
+                            <div class="socialToolsContainerSideSpacing">
+                                <div class="socialToolsContainer">
+                                    <div>
+                                        <i class="far fa-heart" id="rightPadding"></i>
+                                        <i class="far fa-comment" id="rightPadding"></i>
+                                        <i class="far fa-paper-plane" id="rightPadding"></i>
+                                    </div>
+                                    <i class="far fa-bookmark"></i>
+                                </div>
+                                <div id="likes"><b>12,30k likes</b></div>
+                                <div class="commentSection">
+                                    <div class="userComment">
+                                        <span id="userNameComment">jockowillink</span> <p>Aftermath Two is one/one is none.</p>
+                                    </div>
+                                    <div class="userComment">
+                                        <span id="userNameComment">jockowillink</span> <p>Aftermath Two is one/one is none.</p>
+                                    </div>
+                                    <div class="userComment">
+                                        <span id="userNameComment">jockowillink</span> <p>Aftermath Two is one/one is none.</p>
+                                    </div>
+                                    <div class="userComment">
+                                        <span id="userNameComment">jockowillink</span> <p>Aftermath Two is one/one is none.</p>
+                                    </div>
+                                    <div class="userComment">
+                                        <span id="userNameComment">jockowillink</span> <p>Aftermath Two is one/one is none.</p>
+                                    </div>
+                                    <div class="userComment">
+                                        <span id="userNameComment">jockowillink</span> <p>Aftermath Two is one/one is none.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="commentInputContainer">
+                            <i class="far fa-smile"></i>
+                            <input type="text" placeholder="Add a comment..." id="commentInput">
+                            <button id="postComment">Post</button>
+                        </div>
+                     
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="userSuggestionsContainer">
+                <div class="SuggestionsWrapper">
+                    <div class="SuggestionsWrapperHeader">
+                        <div class="userNameandIcon">
+                            <div class="userSuggestIcon" id="insertUserImg1"></div>
+                            <div class="NameAndBio">
+                                <span><b>admirkozlica</b></span><br>
+                                <span class="bio">Web.Dev😛</span> 
+                            </div>
+                            <a class="suggestionsText"><b>Switch</b></a>
+                        </div>
+                        <div class="div">
+                            <span class="bio"><b>Suggestions For You</b></span>
+                            <span>See All</span>
+                        </div>
+                    </div>
+                    <div id="insertSuggestions">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>
+
+
+<!-- Foto von AaDil von Pexels -->
+<!-- Foto von Ibraim Leonardo von Pexels -->
+<!-- Foto von Italo Melo von Pexels-->
+<!-- Foto von Vinicius Wiesehofer von Pexels -->
+<!-- Foto von Justus Menke von Pexels -->
+<!-- Foto von Tony James-Andersson von Pexels -->
+<!-- Foto von nappy von Pexels -->
+<!-- Foto von Steven Arenas von Pexels -->
+<!-- Foto von Craig McKay von Pexels -->
+<!-- Foto von Wendy Wei von Pexels -->
+<!-- Foto von Victor Freitas von Pexels -->
+<!-- Foto von Visit Greenland von Pexels -->
+
+
+
+
+

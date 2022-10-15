@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: black;
+        }
+        .likeIconAndImage{
+            fill: transparent;
+            stroke: whitesmoke;
+            stroke-width: 4px;
+            cursor: pointer;
+            position: relative;
+            margin-top: 100px;
+        }
+        svg{
+            overflow: visible;
+            width: 164px;
+            height: 164px;
+        }
+
+        .heartFadeOut{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: -1;
+            stroke: none;
+        }
+        .heartStroke{
+            stroke-dashoffset: 1550;
+            stroke-dasharray: 1550;
+        }
+        .heartStroke:hover{
+            transform-origin: center;
+            animation: drawHeart 1s linear forwards;
+        }
+
+        .heartStroke:hover ~ .heartFadeOut{
+            transform-origin: center;
+            animation: pushOutHeart 1s linear forwards;
+        }
+
+        
+
+        
+
+        /* Keyframe animation */
+
+        @keyframes drawHeart{
+            0% {
+                stroke-dashoffset: 3100;
+                opacity: 0;
+            }
+            20%{
+                opacity: 1;
+            }
+            30% {
+                stroke-dashoffset: 1500;
+            }
+            60% {
+                stroke-dashoffset: 0;
+                transform: scale(1);
+                fill: transparent;
+            }
+            80%{
+                stroke-dashoffset: 0;
+                transform: scale(1.05);
+                fill: whitesmoke;
+            }
+            90% {
+                stroke-dashoffset: 0;
+                transform: scale(1);
+            }
+            100% {
+                stroke-dashoffset: 0;
+                fill: whitesmoke;
+            }
+    }
+
+    @keyframes pushOutHeart {
+        70%{
+            fill: transparent;
+            transform: scale(1);
+            opacity: 0;
+        }
+        80%{
+            fill: whitesmoke;
+            transform: scale(1.5);
+            opacity: 1;
+        }
+        100%{
+            fill: whitesmoke;
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+            
+    </style>
+    <script></script>
+<body>
+    <div class="likeIconAndImage">
+        <svg class="heartStroke" viewBox="0 0 512 512" width="100" title="heart">
+            <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
+        </svg>
+        <svg class="heartFadeOut" viewBox="0 0 512 512" width="100" title="heart">
+            <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
+        </svg>
+    </div>
+
+</body>
+</html>
