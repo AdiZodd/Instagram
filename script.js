@@ -1,5 +1,4 @@
-//document.body.style ='overflow:hidden;'
-//event.stopPropagation()
+
 
 let arrayUserImages = ['images/userProfileImg/1.jpg', 'images/userProfileImg/2.jpg', 'images/userProfileImg/3.jpg', 'images/userProfileImg/4.jpg','images/userProfileImg/5.jpg'];
 let arrayUserName = ['jane', 'carlos', 'markos', 'iza','stella'];
@@ -113,9 +112,10 @@ function insertImgInSuggestions(){
                 <img src="${suggestedUsersImg[i]}" alt="">
                 </div>
                 <div class="NameAndBio">
-                    <span><b>${suggestedUsersName[i]}</b></span><br>
-                    <span class="bio">Insanley popular</span> 
+                <span><b>${suggestedUsersName[i]}</b></span><br>
+                <span class="bio">Insanley popular</span> 
                 </div>
+                
             </div>
             <a class="follow">Follow</a>
         </div>
@@ -164,7 +164,7 @@ function insertPost(){
                     <div class="socialToolsContainer">
                         <div>
                             <a onclick="fillorUnfillLikeBtn('heart${i}', '${i}')" id="heart${i}"><i class="far fa-heart" id="rightPadding"></i></a>
-                            <a onclick="focusOnPostComment('${i}')"><i class="far fa-comment" id="rightPadding" ></i></a>
+                            <a onclick="openComment('openComment${i}', '${i}')"><i class="far fa-comment rightPadding" id="openComment${i}" ></i></a>
                             <i class="far fa-paper-plane" id="rightPadding"></i>
                         </div>
                         <a onclick="fillBookMark('bookmMark${i}')"><i class="far fa-bookmark" id="bookmMark${i}"></i></a>
@@ -211,11 +211,6 @@ function insertComment(ind){
     }
 }
 
-
-
-function focusOnPostComment(id) {
-    document.getElementById(`commentInput${id}`).focus();
-}
 
 function fillBookMark(i){
     let selectedBookMark = document.getElementById(i);
@@ -416,6 +411,15 @@ function checkIfDoubleClickOnPostImg(i){
     fillorUnfillLikeBtn(indexHeart, i);
 }
 
-
+function openComment(indexOfOpenComment, indexOfComment){
+    document.body.innerHTML +=`
+    <section class="blackBackground">
+        <div class="openedComment">
+            <div class="openedCommentImgContainer">
+                <img src="${usersPost[indexOfComment].authorImage}" alt="">
+            </div>
+        </div>
+    </section>`
+}
 
 

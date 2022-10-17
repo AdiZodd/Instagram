@@ -333,6 +333,8 @@ svg{
     font-size: 1.5rem;
 }#rightPadding{
     padding-right: 12px;
+}.rightPadding{
+    padding-right: 12px;
 }#likes{
     margin-top: 12px;
 }.commentSection{
@@ -579,4 +581,36 @@ svg{
     .mainWrapper{
         width: 365px;
     }
+}
+
+/* Style for when a comment has been opened */
+
+.blackBackground{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: 3000;
+    background-color: #2626269a;
+}
+
+.openedComment{
+    position: fixed;
+    height: 600px;
+    width: 816px;
+    top: 50%;
+    left: 50%;
+    margin-top: -300px;  /* Negative half of height. */
+    margin-left: -408px;  /* Negative half of width. */
+    background-color: white;
+}.openedCommentImgContainer{
+    width: 65%;
+    height: 100%;
+    background-color:black;
+}
+
+.openedComment img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
