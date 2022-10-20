@@ -311,6 +311,16 @@ svg{
     width: 100%;
     margin-top: 14px;
     margin-bottom: 14px;
+}.postHeaderOpenedComment{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 12px;
+    padding-top: 10px;
+}.postHeaderOpenedCommentWrapper{
+    margin-bottom: 14px;
+    border-bottom: 1px solid #efefef;
 }.userPostIcon{
     width: 32px;
     height: 32px;
@@ -595,6 +605,7 @@ svg{
 }
 
 .openedComment{
+    display: flex;
     position: fixed;
     height: 600px;
     width: 816px;
@@ -604,7 +615,7 @@ svg{
     margin-left: -408px;  /* Negative half of width. */
     background-color: white;
 }.openedCommentImgContainer{
-    width: 65%;
+    width: 55%;
     height: 100%;
     background-color:black;
 }
@@ -613,4 +624,23 @@ svg{
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.closesSection{
+    position: absolute;
+    top: 12px;
+    right: 24px;
+    font-size: 2rem;
+    color: white;
+}
+
+.openedCommentCommentContainer{
+    width: 45%;
+}
+
+/* Style classes every container can use*/
+
+.marginLeftAndRight{
+    margin-left: 12px;
+    margin-right: 12px;
 }

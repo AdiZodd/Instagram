@@ -224,7 +224,8 @@ function fillBookMark(i){
 }
 
 //Checks if the div-container-comment width exceeds the div-post-container width
-function checkIfCommentRowIsTooWide(userCommentBox,index, maxWidth){
+function checkIfCommentRowIsTooWide(userCommentBox,index, maxWidth){ 
+    console.log(index);
     let desiredWidth = document.getElementById(maxWidth).getBoundingClientRect().width;
     let commentWidth = document.getElementById(userCommentBox).getBoundingClientRect().width;
     
@@ -412,14 +413,70 @@ function checkIfDoubleClickOnPostImg(i){
 }
 
 function openComment(indexOfOpenComment, indexOfComment){
+    drawContainerWhenACommentHasBeenOpened(indexOfComment);
+    insertUsersPostIconInOpenComment(indexOfComment);
+    insertCommentsInOpenComment(indexOfComment);
+    insertInputFieldInOpenComment(indexOfComment);
+}
+
+function drawContainerWhenACommentHasBeenOpened(indexOfComment){
     document.body.innerHTML +=`
-    <section class="blackBackground">
+    <section class="blackBackground" id="openedCommentSection">
+        <a onclick="closesComment()" class="closesSection"> X </a>
         <div class="openedComment">
             <div class="openedCommentImgContainer">
                 <img src="${usersPost[indexOfComment].authorImage}" alt="">
+            </div>
+            <div class="openedCommentCommentContainer" id="insertCommentsInOpenComment">
             </div>
         </div>
     </section>`
 }
 
+function insertUsersPostIconInOpenComment(indexOfComment){
+    document.getElementById(`insertCommentsInOpenComment`).innerHTML =``;
+    document.getElementById(`insertCommentsInOpenComment`).innerHTML +=`
+    <div class="postHeaderOpenedCommentWrapper">
+        <div class="postHeaderOpenedComment">
+            <div class="otherUserWrapper">
+                <div class="userPostIcon">
+                    <img src="${arrayUserImages[indexOfComment]}" alt="">
+                </div>
+                    <div class="NameAndBio">
+                        <span><b>${arrayUserName[indexOfComment]}</b></span>
+                    </div>
+                </div>
+                <i class="fas fa-ellipsis-h"></i>
+            </div>
+        </div>
+    </div>
+    `;
+}
 
+function insertCommentsInOpenComment(indexOfComment){
+    checkIfCommentInputIsFilled(indexOfComment);
+    for (let i = 0; i < usersPost[indexOfComment].comments.length; i++) {
+        let comment = usersPost[indexOfComment].comments[i];
+        
+        document.getElementById(`insertCommentsInOpenComment`).innerHTML += `
+        <div class="userComment marginLeftAndRight" id="maxWidthOpenedComment${indexOfComment}${i}">
+            <div id="userCommentBoxOpenedComment${indexOfComment}${i}" class="row"><span id="userNameComment">${usersPost[indexOfComment].comments[i].username}</span> <p class="userCommentText"id="userCommentOpenedComment${indexOfComment}${i}">${usersPost[indexOfComment].comments[i].comment}</p></div>
+            
+        </div>
+    `;
+    checkIfCommentRowIsTooWide(`userCommentBoxOpenedComment${indexOfComment}${i}`,`OpenedComment${indexOfComment}${i}`, `insertCommentsInOpenComment`);
+    }
+}
+
+function insertInputFieldInOpenComment(indexOfComment){
+    document.getElementById(`insertCommentsInOpenComment`).innerHTML+=`
+    <div class="commentInputContainer">
+        <input type="text" oninput="checkIfCommentInputIsFilled('OpenedComment${indexOfComment}')" placeholder="Add a comment..." id="commentInputOpenedComment${indexOfComment}" class="commentInput">
+        <button class="postComment" id="postCommentOpenedComment${indexOfComment}" onclick="submitComment('OpenedComment${indexOfComment}')" disabled>Post</button>
+    </div>`
+}
+
+function closesComment(){
+    let section = document.getElementById('openedCommentSection');
+    section.remove();
+}
