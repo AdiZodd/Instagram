@@ -164,7 +164,7 @@ function insertPost(){
                     <div class="socialToolsContainer">
                         <div>
                             <a onclick="fillorUnfillLikeBtn('heart${i}', '${i}')" id="heart${i}"><i class="far fa-heart" id="rightPadding"></i></a>
-                            <a onclick="openComment('openComment${i}', '${i}')"><i class="far fa-comment rightPadding" id="openComment${i}" ></i></a>
+                            <a onclick="openComment('${i}')"><i class="far fa-comment rightPadding" id="openComment${i}" ></i></a>
                             <i class="far fa-paper-plane" id="rightPadding"></i>
                         </div>
                         <a onclick="fillBookMark('bookmMark${i}')"><i class="far fa-bookmark" id="bookmMark${i}"></i></a>
@@ -269,16 +269,32 @@ function toogleOverflowInHTMLElements(id){
 
 function submitComment(i){
     let newComment = document.getElementById(`commentInput${i}`).value;
-
-        usersPost[i].comments.push({ username: currentUser, comment: newComment });
+        usersPost[OnlyUsesNumbersFromTheIndex(i)].comments.push({ username: currentUser, comment: newComment });
         document.getElementById(`commentInput${i}`).value='';
-        insertComment(i);
+        insertComment(OnlyUsesNumbersFromTheIndex(i));
+        checksIfThereIsAnOpenedComment(OnlyUsesNumbersFromTheIndex(i));
         setLastChildInArrayCSSElement(i);
+}
+
+function OnlyUsesNumbersFromTheIndex(i){
+
+    let requirements = /\d+/g;
+    let result = i.match(requirements);
+
+    i = result;
+    return i;
+
+}
+
+function checksIfThereIsAnOpenedComment(indexOfComment){
+    if(document.getElementById('openedCommentSection')){
+        insertCommentsInOpenComment(indexOfComment);
+    }
 }
 
 //Gets the index of the last and second last element in the json array userPost.comments and adds to the last element the CSS class 'newPost' and removes it from the last element
 function setLastChildInArrayCSSElement(ind){
-    let lastCommentIndex = usersPost[ind].comments.length - 1;
+    let lastCommentIndex = usersPost[OnlyUsesNumbersFromTheIndex(ind)].comments.length - 1;
     let secondLastCommentIndex = lastCommentIndex - 1;
 
     let lastUserComment = document.getElementById(`maxWidth${ind}${lastCommentIndex}`);
@@ -412,14 +428,16 @@ function checkIfDoubleClickOnPostImg(i){
     fillorUnfillLikeBtn(indexHeart, i);
 }
 
-function openComment(indexOfOpenComment, indexOfComment){
+function openComment(indexOfComment){
     drawContainerWhenACommentHasBeenOpened(indexOfComment);
     insertUsersPostIconInOpenComment(indexOfComment);
     insertCommentsInOpenComment(indexOfComment);
+    insertSocialToolsInOpenComment(indexOfComment);
     insertInputFieldInOpenComment(indexOfComment);
 }
 
 function drawContainerWhenACommentHasBeenOpened(indexOfComment){
+    console.log(indexOfComment);
     document.body.innerHTML +=`
     <section class="blackBackground" id="openedCommentSection">
         <a onclick="closesComment()" class="closesSection"> X </a>
@@ -427,7 +445,11 @@ function drawContainerWhenACommentHasBeenOpened(indexOfComment){
             <div class="openedCommentImgContainer">
                 <img src="${usersPost[indexOfComment].authorImage}" alt="">
             </div>
-            <div class="openedCommentCommentContainer" id="insertCommentsInOpenComment">
+            <div class="openCommentWrapper">
+                <div class="openedCommentCommentContainer" id="insertCommentsInOpenComment">
+                </div>
+                <div class="openedCommentCommentContainer" id="insertCommentsInOpenCommentLowerHalf">
+                </div>
             </div>
         </div>
     </section>`
@@ -450,15 +472,18 @@ function insertUsersPostIconInOpenComment(indexOfComment){
             </div>
         </div>
     </div>
+    <div id="insertOnlyComments">
+    </div>
     `;
 }
 
 function insertCommentsInOpenComment(indexOfComment){
     checkIfCommentInputIsFilled(indexOfComment);
+    document.getElementById(`insertOnlyComments`).innerHTML =``;
     for (let i = 0; i < usersPost[indexOfComment].comments.length; i++) {
         let comment = usersPost[indexOfComment].comments[i];
         
-        document.getElementById(`insertCommentsInOpenComment`).innerHTML += `
+        document.getElementById(`insertOnlyComments`).innerHTML += `
         <div class="userComment marginLeftAndRight" id="maxWidthOpenedComment${indexOfComment}${i}">
             <div id="userCommentBoxOpenedComment${indexOfComment}${i}" class="row"><span id="userNameComment">${usersPost[indexOfComment].comments[i].username}</span> <p class="userCommentText"id="userCommentOpenedComment${indexOfComment}${i}">${usersPost[indexOfComment].comments[i].comment}</p></div>
             
@@ -468,9 +493,32 @@ function insertCommentsInOpenComment(indexOfComment){
     }
 }
 
+function insertSocialToolsInOpenComment(indexOfComment){
+    document.getElementById(`insertCommentsInOpenCommentLowerHalf`).innerHTML='';
+    document.getElementById(`insertCommentsInOpenCommentLowerHalf`).innerHTML+=`
+
+    <div class="socialToolsContainer marginLeftAndRight">
+        <div>
+            <a onclick="fillorUnfillLikeBtn('heartOpenedComment${indexOfComment}', '${indexOfComment}')" id="heartOpenedComment${indexOfComment}"><i class="far fa-heart" id="rightPadding"></i></a>
+            <a ><i class="far fa-comment rightPadding" id="focusOnComment${indexOfComment}" ></i></a>
+            <i class="far fa-paper-plane" id="rightPadding"></i>
+        </div>
+        <a onclick="fillBookMark('bookmMark${indexOfComment}')"><i class="far fa-bookmark" id="bookmMark${indexOfComment}"></i></a>
+    </div>`
+}
+
 function insertInputFieldInOpenComment(indexOfComment){
-    document.getElementById(`insertCommentsInOpenComment`).innerHTML+=`
+    document.getElementById(`insertCommentsInOpenCommentLowerHalf`).innerHTML+=`
     <div class="commentInputContainer">
+        <div class="posRelative">
+            <div class="emojiPosAbsolute">
+                <div class="emojiWrapper">
+                    <div class="emojiContainer" id="enterEmojiOpenendComment${indexOfComment}">
+                    </div>
+                </div>
+            </div>                        
+            <a onclick="openEmojiPicker('enterEmojiOpenendComment${indexOfComment}','OpenedComment${indexOfComment}'), preventsClosing(event)"><i class="far fa-smile"></i></a>
+        </div>
         <input type="text" oninput="checkIfCommentInputIsFilled('OpenedComment${indexOfComment}')" placeholder="Add a comment..." id="commentInputOpenedComment${indexOfComment}" class="commentInput">
         <button class="postComment" id="postCommentOpenedComment${indexOfComment}" onclick="submitComment('OpenedComment${indexOfComment}')" disabled>Post</button>
     </div>`

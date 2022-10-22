@@ -626,6 +626,10 @@ svg{
     object-fit: contain;
 }
 
+#insertOnlyComments{
+    height: 70%;
+}
+
 .closesSection{
     position: absolute;
     top: 12px;
@@ -634,13 +638,16 @@ svg{
     color: white;
 }
 
-.openedCommentCommentContainer{
+.openCommentWrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
     width: 45%;
 }
 
 /* Style classes every container can use*/
 
 .marginLeftAndRight{
-    margin-left: 12px;
-    margin-right: 12px;
+    margin-left: 18px;
+    margin-right: 18px;
 }
