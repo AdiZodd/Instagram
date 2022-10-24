@@ -18,7 +18,8 @@ let usersPost = [{
             },{
                 "username": "karsten",
                 "comment": "Looks good👌",
-            }]
+            }],
+    "likedByUser": 0,
         },{
     "author": arrayUserName[1],
     "authorProfileImg": arrayUserImages[1],
@@ -33,7 +34,8 @@ let usersPost = [{
                 
                 "username": "john.willnik",
                 "comment": "I hope you are getting after it💪!",
-            }] 
+            }],
+    "likedByUser": 0,
         },{
     "author": arrayUserName[2],
     "authorProfileImg": arrayUserImages[2],
@@ -48,7 +50,8 @@ let usersPost = [{
                 
                 "username": "gopnik.fromrussia",
                 "comment": "parties in my country are better",
-            }] 
+            }],
+    "likedByUser": 0, 
         },{
     "author": arrayUserName[3],
     "authorProfileImg": arrayUserImages[3],
@@ -62,7 +65,8 @@ let usersPost = [{
             },{
                 "username": "laura.97",
                 "comment": "Heyyyyyyy!!! Lange nicht mehr gesehen🤗🤗🤗! Wie geht es dir?😜",
-            }] 
+            }],
+    "likedByUser": 0, 
         },{
     "author": arrayUserName[4],
     "authorProfileImg": arrayUserImages[4],
@@ -76,7 +80,8 @@ let usersPost = [{
             },{
                 "username": "mr_smartass",
                 "comment": "Just look at the descripton man, you're welcome!",
-            }] 
+            }],
+    "likedByUser": 0, 
         }]
 
 function initWebsite(){
@@ -163,7 +168,7 @@ function insertPost(){
                 <div class="socialToolsContainerSideSpacing">
                     <div class="socialToolsContainer">
                         <div>
-                            <a onclick="fillorUnfillLikeBtn('heart${i}', '${i}')" id="heart${i}"><i class="far fa-heart" id="rightPadding"></i></a>
+                            ${heartSymbol(i)}
                             <a onclick="openComment('${i}')"><i class="far fa-comment rightPadding" id="openComment${i}" ></i></a>
                             <i class="far fa-paper-plane" id="rightPadding"></i>
                         </div>
@@ -191,6 +196,14 @@ function insertPost(){
                 </div>
         `;
         insertComment(i);
+    }
+}
+//This function is there for if the user has liked a comment before that it stays filled if the requirments match the criteria
+function heartSymbol(i){
+    if(usersPost[i].likedByUser == 0){
+        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}')" id="heart${i}"><i class="far fa-heart" id="rightPadding"></i></a>`
+    }else if(usersPost[i].likedByUser > 0){
+        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}')" id="heart${i}"><i class="fas fa-heart" id="rightPadding"></i></a>`
     }
 }
 
@@ -381,19 +394,44 @@ function preventsClosing(event){
 }
 
 
-
-function fillorUnfillLikeBtn(index, i){
-    let filled = "<i class=\"fas fa-heart\" id=\"rightPadding\" aria-hidden=\"true\"></i>";
-    let id = document.getElementById(index);
-
-    if (filled != id.innerHTML){
-        fillLikeBtn(index);
-        addHeartAnimation(i);
-    }else{
-        unfillLikeBtn(index);
-        removeHeartAnimation(i);
+function likesOrUnlikesTheSelectedComment(indexOfHeart, indexOfHeartNumber){
+    
+    if (valueOfLikedByUserIsZero(indexOfHeartNumber)){
+        incrementsLikedByUserByOne(indexOfHeartNumber);
+        fillLikeBtn(indexOfHeart);
+        addHeartAnimation(indexOfHeartNumber);
+    }else if(valueOfLikedByUserIsNotZero(indexOfHeartNumber)){
+        subtractLikedByUserByOne(indexOfHeartNumber);
+        unfillLikeBtn(indexOfHeart);
+        removeHeartAnimation(indexOfHeartNumber);
     }
+    
 }
+function valueOfLikedByUserIsZero(indexOfHeartNumber){
+    return usersPost[indexOfHeartNumber].likedByUser == 0;
+}
+function incrementsLikedByUserByOne(indexOfHeartNumber){
+    usersPost[indexOfHeartNumber].likedByUser++;
+}
+function valueOfLikedByUserIsNotZero(indexOfHeartNumber){
+    return usersPost[indexOfHeartNumber].likedByUser !== 0
+}
+function subtractLikedByUserByOne(indexOfHeartNumber){
+    usersPost[indexOfHeartNumber].likedByUser--;
+}
+
+// function fillorUnfillLikeBtn(index, i){
+//     let filled = "<i class=\"fas fa-heart\" id=\"rightPadding\" aria-hidden=\"true\"></i>";
+//     let id = document.getElementById(index);
+
+//     if (filled != id.innerHTML){
+//         fillLikeBtn(index);
+//         addHeartAnimation(i);
+//     }else{
+//         unfillLikeBtn(index);
+//         removeHeartAnimation(i);
+//     }
+// }
 
 function addHeartAnimation(i){
     let classHeartStroke = document.getElementById(`heartStroke${i}`);
@@ -411,13 +449,26 @@ function removeHeartAnimation(i){
 }
 
 function fillLikeBtn(index){
-    var element = document.getElementById(index);
-    element.innerHTML = '<i class="fas fa-heart" id="rightPadding"></i>';
+    var heart = document.getElementById(`${index}`);
+    var heartOnlyUseNumberFromIndex = document.getElementById(`heart${OnlyUsesNumbersFromTheIndex(index)}`);
+    if (heart == heartOnlyUseNumberFromIndex){
+        heart.innerHTML = '<i class="fas fa-heart" id="rightPadding"></i>';
+    }else if (heart !== heartOnlyUseNumberFromIndex){
+        heart.innerHTML = '<i class="fas fa-heart" id="rightPadding"></i>';
+        heartOnlyUseNumberFromIndex.innerHTML = '<i class="fas fa-heart" id="rightPadding"></i>';
+    }
 }
 
 function unfillLikeBtn(index){
-    var element = document.getElementById(index);
-    element.innerHTML = '<i class="far fa-heart" id="rightPadding"></i>';
+    var heart = document.getElementById(`${index}`);
+    var heartOnlyUseNumberFromIndex = document.getElementById(`heart${OnlyUsesNumbersFromTheIndex(index)}`);
+    if (heart == heartOnlyUseNumberFromIndex){
+        heart.innerHTML = '<i class="far fa-heart" id="rightPadding"></i>';
+    }else if (heart !== heartOnlyUseNumberFromIndex){
+        heart.innerHTML = '<i class="far fa-heart" id="rightPadding"></i>';
+        heartOnlyUseNumberFromIndex.innerHTML = '<i class="far fa-heart" id="rightPadding"></i>';
+    }
+    
 }
 
 
@@ -499,12 +550,20 @@ function insertSocialToolsInOpenComment(indexOfComment){
 
     <div class="socialToolsContainer marginLeftAndRight">
         <div>
-            <a onclick="fillorUnfillLikeBtn('heartOpenedComment${indexOfComment}', '${indexOfComment}')" id="heartOpenedComment${indexOfComment}"><i class="far fa-heart" id="rightPadding"></i></a>
+            ${heartSymbolForOpenedComment(indexOfComment)}
             <a ><i class="far fa-comment rightPadding" id="focusOnComment${indexOfComment}" ></i></a>
             <i class="far fa-paper-plane" id="rightPadding"></i>
         </div>
         <a onclick="fillBookMark('bookmMark${indexOfComment}')"><i class="far fa-bookmark" id="bookmMark${indexOfComment}"></i></a>
     </div>`
+}
+//This function is there for if the user has liked a comment before that it stays filled if the requirments match the criteria
+function heartSymbolForOpenedComment(i){
+    if(usersPost[i].likedByUser == 0){
+        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heartOpenedComment${i}', '${i}')" id="heartOpenedComment${i}"><i class="far fa-heart" id="rightPadding"></i></a>`
+    }else if(usersPost[i].likedByUser > 0){
+        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heartOpenedComment${i}', '${i}')" id="heartOpenedComment${i}"><i class="fas fa-heart" id="rightPadding"></i></a>`
+    }
 }
 
 function insertInputFieldInOpenComment(indexOfComment){
