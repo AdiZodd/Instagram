@@ -224,6 +224,26 @@ svg{
     animation: pushOutHeart 2s linear forwards,
                pushOutHeartOut 2s 3s linear forwards;
 }
+.heartStrokeOpenedComment{
+    position: absolute;
+    stroke-dashoffset: 1550;
+    stroke-dasharray: 1550;
+    display: none;
+}
+.heartStrokeOpenedComment.active {
+    display: flex;
+    transform-origin: center;
+    animation: drawHeart 1s linear forwards,
+               drawHeartOut 2s 3s linear forwards;
+}
+
+.heartStrokeOpenedComment.active ~ .heartFadeOut{
+    display: flex;
+    transform-origin: center;
+    animation: pushOutHeart 2s linear forwards,
+               pushOutHeartOut 2s 3s linear forwards;
+}
+
 /* Heart SVG Style End */
 
 /* Heart SVG KeyFrames Start */
@@ -618,6 +638,17 @@ svg{
     width: 55%;
     height: 100%;
     background-color:black;
+    fill: transparent;
+    stroke: whitesmoke;
+    stroke-width: 4px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.openedCommentImgContainer a{
+    height: 100%;
 }
 
 .openedComment img{

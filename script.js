@@ -451,32 +451,42 @@ function removeHeartAnimation(i){
 function fillLikeBtn(index){
     var heart = document.getElementById(`${index}`);
     var heartOnlyUseNumberFromIndex = document.getElementById(`heart${OnlyUsesNumbersFromTheIndex(index)}`);
-    if (heart == heartOnlyUseNumberFromIndex){
+
+    if (heartAndHeartOnlyUseNumberFromIndexAreTheSame(heart, heartOnlyUseNumberFromIndex)){
         heart.innerHTML = '<i class="fas fa-heart" id="rightPadding"></i>';
-    }else if (heart !== heartOnlyUseNumberFromIndex){
+    }else if (heartAndHeartOnlyUseNumberFromIndexAreNotTheSame(heart, heartOnlyUseNumberFromIndex)){
         heart.innerHTML = '<i class="fas fa-heart" id="rightPadding"></i>';
         heartOnlyUseNumberFromIndex.innerHTML = '<i class="fas fa-heart" id="rightPadding"></i>';
     }
 }
 
+
 function unfillLikeBtn(index){
     var heart = document.getElementById(`${index}`);
     var heartOnlyUseNumberFromIndex = document.getElementById(`heart${OnlyUsesNumbersFromTheIndex(index)}`);
-    if (heart == heartOnlyUseNumberFromIndex){
+
+    if (heartAndHeartOnlyUseNumberFromIndexAreTheSame(heart, heartOnlyUseNumberFromIndex)){
         heart.innerHTML = '<i class="far fa-heart" id="rightPadding"></i>';
-    }else if (heart !== heartOnlyUseNumberFromIndex){
+    }else if (heartAndHeartOnlyUseNumberFromIndexAreNotTheSame(heart, heartOnlyUseNumberFromIndex)){
         heart.innerHTML = '<i class="far fa-heart" id="rightPadding"></i>';
         heartOnlyUseNumberFromIndex.innerHTML = '<i class="far fa-heart" id="rightPadding"></i>';
     }
     
 }
 
+function heartAndHeartOnlyUseNumberFromIndexAreTheSame(heart, heartOnlyUseNumberFromIndex){
+    return heart == heartOnlyUseNumberFromIndex;
+}
+
+function heartAndHeartOnlyUseNumberFromIndexAreNotTheSame(heart, heartOnlyUseNumberFromIndex){
+    return heart !== heartOnlyUseNumberFromIndex;
+}
 
 
 function checkIfDoubleClickOnPostImg(i){
     let indexHeart = `heart${i}`;
     toggleHeartAnimation(i);
-    fillorUnfillLikeBtn(indexHeart, i);
+    likesOrUnlikesTheSelectedComment(indexHeart, OnlyUsesNumbersFromTheIndex(i));
 }
 
 function openComment(indexOfComment){
@@ -494,7 +504,14 @@ function drawContainerWhenACommentHasBeenOpened(indexOfComment){
         <a onclick="closesComment()" class="closesSection"> X </a>
         <div class="openedComment">
             <div class="openedCommentImgContainer">
-                <img src="${usersPost[indexOfComment].authorImage}" alt="">
+                    <a ondblclick="checkIfDoubleClickOnPostImg('OpenedComment${indexOfComment}')" id="imgOpenedComment${indexOfComment}"><img src="${usersPost[indexOfComment].authorImage}" alt=""></a>
+                    <svg class="heartStrokeOpenedComment" id="heartStrokeOpenedComment${indexOfComment}" viewBox="0 0 512 512" width="100" title="heart">
+                            <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
+                        </svg>
+                        <svg class="heartFadeOut" viewBox="0 0 512 512" width="100" title="heart">
+                            <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
+                        </svg>
+    
             </div>
             <div class="openCommentWrapper">
                 <div class="openedCommentCommentContainer" id="insertCommentsInOpenComment">
