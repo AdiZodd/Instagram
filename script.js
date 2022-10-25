@@ -92,42 +92,6 @@ function initWebsite(){
     insertPost();
 }
 
-function insertImgInStories(){
-    document.getElementById('insertImgStoryHere').innerHTML ='';
-    for (let i = 0; i < arrayUserImages.length; i++) {
-        document.getElementById('insertImgStoryHere').innerHTML +=`
-        <div class="userIconAndNameContainer">
-            <div class="userStoryIcon" id="userImageStory">
-                <img src="${arrayUserImages[i]}" alt="">
-            </div>
-            <span class="userNameStory">${arrayUserName[i]}</span>
-        </div>
-    `
-        
-    };
-}
-
-function insertImgInSuggestions(){
-    document.getElementById('insertSuggestions').innerHTML ='';
-    for (let i = 0; i < suggestedUsersImg.length; i++) {
-    document.getElementById('insertSuggestions').innerHTML +=`
-        <div class="suggestionsContainer">
-            <div class="otherUserWrapper">
-                <div class="otherUserSuggestIcon">
-                <img src="${suggestedUsersImg[i]}" alt="">
-                </div>
-                <div class="NameAndBio">
-                <span><b>${suggestedUsersName[i]}</b></span><br>
-                <span class="bio">Insanley popular</span> 
-                </div>
-                
-            </div>
-            <a class="follow">Follow</a>
-        </div>
-    `;
-    }
-}
-
 function insertUserImg(){
         document.getElementById('insertUserImg').innerHTML ='';
         document.getElementById('insertUserImg').innerHTML += `<img src="images/mainUserImg/1.jpg" alt="">`;
@@ -137,93 +101,6 @@ function insertUserImg1(){
     document.getElementById('insertUserImg1').innerHTML ='';
     document.getElementById('insertUserImg1').innerHTML += `<img src="images/mainUserImg/1.jpg" alt="">`;
 }
-
-
-function insertPost(){
-    document.getElementById('insertPost').innerHTML ='';
-    for (let i = 0; i < arrayUserImages.length; i++) {
-        document.getElementById('insertPost').innerHTML +=`
-        <div class="post">
-            <div>
-                <div class="postHeader">
-                <div class="otherUserWrapper">
-                    <div class="userPostIcon">
-                    <img src="${arrayUserImages[i]}" alt="">
-                    </div>
-                        <div class="NameAndBio">
-                        <span><b>${arrayUserName[i]}</b></span>
-                        </div>
-                    </div>
-                    <i class="fas fa-ellipsis-h"></i>
-                </div>
-                <div class="likeIconAndImage">
-                    <a ondblclick="checkIfDoubleClickOnPostImg('${i}')" id="img${i}"><img src="${usersPost[i].authorImage}" alt=""></a>
-                    <svg class="heartStroke" id="heartStroke${i}" viewBox="0 0 512 512" width="100" title="heart">
-                        <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
-                    </svg>
-                    <svg class="heartFadeOut" viewBox="0 0 512 512" width="100" title="heart">
-                        <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
-                    </svg>
-                </div>
-                <div class="socialToolsContainerSideSpacing">
-                    <div class="socialToolsContainer">
-                        <div>
-                            ${heartSymbol(i)}
-                            <a onclick="openComment('${i}')"><i class="far fa-comment rightPadding" id="openComment${i}" ></i></a>
-                            <i class="far fa-paper-plane" id="rightPadding"></i>
-                        </div>
-                        <a onclick="fillBookMark('bookmMark${i}')"><i class="far fa-bookmark" id="bookmMark${i}"></i></a>
-                    </div>
-                    <div id="likes"><b>12,30k likes</b></div>
-                            <div class="commentSection" id="insertComment${i}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="commentInputContainer">
-                        <div class="posRelative">
-                            <div class="emojiPosAbsolute">
-                                <div class="emojiWrapper">
-                                    <div class="emojiContainer" id="enterEmoji${i}">
-                                    </div>
-                                </div>
-                            </div>                        
-                            <a onclick="openEmojiPicker('enterEmoji${i}','${i}'), preventsClosing(event)"><i class="far fa-smile"></i></a>
-                        </div>
-                        <input type="text" oninput="checkIfCommentInputIsFilled('${i}')" placeholder="Add a comment..." id="commentInput${i}" class="commentInput">
-                        <button class="postComment" id="postComment${i}" onclick="submitComment('${i}')" disabled>Post</button>
-                    </div>
-                     
-                </div>
-        `;
-        insertComment(i);
-    }
-}
-//This function is there for if the user has liked a comment before that it stays filled if the requirments match the criteria
-function heartSymbol(i){
-    if(usersPost[i].likedByUser == 0){
-        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}')" id="heart${i}"><i class="far fa-heart" id="rightPadding"></i></a>`
-    }else if(usersPost[i].likedByUser > 0){
-        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}')" id="heart${i}"><i class="fas fa-heart" id="rightPadding"></i></a>`
-    }
-}
-
-// Loops through the JSON userPost Array and inserts the comment in the correct user post index
-function insertComment(ind){
-    document.getElementById(`insertComment${ind}`).innerHTML= ``;
-    checkIfCommentInputIsFilled(ind);
-    for (let i = 0; i < usersPost[ind].comments.length; i++) {
-        let comment = usersPost[ind].comments[i];
-        
-        document.getElementById(`insertComment${ind}`).innerHTML += `
-        <div class="userComment" id="maxWidth${ind}${i}">
-            <div id="userCommentBox${ind}${i}" class="row"><span id="userNameComment">${usersPost[ind].comments[i].username}</span> <p class="userCommentText"id="userComment${ind}${i}">${usersPost[ind].comments[i].comment}</p></div>
-            
-        </div>
-    `;
-    checkIfCommentRowIsTooWide(`userCommentBox${ind}${i}`,`${ind}${i}`, `maxWidth${ind}${i}`);
-    }
-}
-
 
 function fillBookMark(i){
     let selectedBookMark = document.getElementById(i);
@@ -356,17 +233,6 @@ function openEmojiPicker(emojiIndex, i){
     emojiContainer.classList.toggle('active');
 }
 
-// Loops through the emojiArray to display the emojies in the emoji container
-function displayEmoji(emojiIndex, indexOfSelectedPost){
-    document.getElementById(emojiIndex).innerHTML ='';
-    for (let i = 0; i < emojiArray.length; i++) {
-        const element = emojiArray[i];
-        document.getElementById(emojiIndex).innerHTML += `
-        <a class="emojiSize" onclick="getEmoji('${element}','${indexOfSelectedPost}'), preventsClosing(event)">${element}</a>
-    `
-    }
-}
-
 function savesTheCurrentDisplayedEmojiInAVariable(emojiIndex){
     currentActiceEmoji ='';
     currentActiceEmoji = emojiIndex;
@@ -497,53 +363,12 @@ function openComment(indexOfComment){
     insertInputFieldInOpenComment(indexOfComment);
 }
 
-function drawContainerWhenACommentHasBeenOpened(indexOfComment){
-    console.log(indexOfComment);
-    document.body.innerHTML +=`
-    <section class="blackBackground" id="openedCommentSection">
-        <a onclick="closesComment()" class="closesSection"> X </a>
-        <div class="openedComment">
-            <div class="openedCommentImgContainer">
-                    <a ondblclick="checkIfDoubleClickOnPostImg('OpenedComment${indexOfComment}')" id="imgOpenedComment${indexOfComment}"><img src="${usersPost[indexOfComment].authorImage}" alt=""></a>
-                    <svg class="heartStrokeOpenedComment" id="heartStrokeOpenedComment${indexOfComment}" viewBox="0 0 512 512" width="100" title="heart">
-                            <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
-                        </svg>
-                        <svg class="heartFadeOut" viewBox="0 0 512 512" width="100" title="heart">
-                            <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
-                        </svg>
-    
-            </div>
-            <div class="openCommentWrapper">
-                <div class="openedCommentCommentContainer" id="insertCommentsInOpenComment">
-                </div>
-                <div class="openedCommentCommentContainer" id="insertCommentsInOpenCommentLowerHalf">
-                </div>
-            </div>
-        </div>
-    </section>`
+function closesComment(){
+    let section = document.getElementById('openedCommentSection');
+    section.remove();
 }
 
-function insertUsersPostIconInOpenComment(indexOfComment){
-    document.getElementById(`insertCommentsInOpenComment`).innerHTML =``;
-    document.getElementById(`insertCommentsInOpenComment`).innerHTML +=`
-    <div class="postHeaderOpenedCommentWrapper">
-        <div class="postHeaderOpenedComment">
-            <div class="otherUserWrapper">
-                <div class="userPostIcon">
-                    <img src="${arrayUserImages[indexOfComment]}" alt="">
-                </div>
-                    <div class="NameAndBio">
-                        <span><b>${arrayUserName[indexOfComment]}</b></span>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-h"></i>
-            </div>
-        </div>
-    </div>
-    <div id="insertOnlyComments">
-    </div>
-    `;
-}
+// ------------------------Below are .innerHTML code blocks--------------------------------- \\
 
 function insertCommentsInOpenComment(indexOfComment){
     checkIfCommentInputIsFilled(indexOfComment);
@@ -600,7 +425,182 @@ function insertInputFieldInOpenComment(indexOfComment){
     </div>`
 }
 
-function closesComment(){
-    let section = document.getElementById('openedCommentSection');
-    section.remove();
+function drawContainerWhenACommentHasBeenOpened(indexOfComment){
+    console.log(indexOfComment);
+    document.body.innerHTML +=`
+    <section class="blackBackground" id="openedCommentSection">
+        <a onclick="closesComment()" class="closesSection"> X </a>
+        <div class="openedComment">
+            <div class="openedCommentImgContainer">
+                    <a ondblclick="checkIfDoubleClickOnPostImg('OpenedComment${indexOfComment}')" id="imgOpenedComment${indexOfComment}"><img src="${usersPost[indexOfComment].authorImage}" alt=""></a>
+                    <svg class="heartStrokeOpenedComment" id="heartStrokeOpenedComment${indexOfComment}" viewBox="0 0 512 512" width="100" title="heart">
+                            <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
+                        </svg>
+                        <svg class="heartFadeOut" viewBox="0 0 512 512" width="100" title="heart">
+                            <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
+                        </svg>
+    
+            </div>
+            <div class="openCommentWrapper">
+                <div class="openedCommentCommentContainer" id="insertCommentsInOpenComment">
+                </div>
+                <div class="openedCommentCommentContainer" id="insertCommentsInOpenCommentLowerHalf">
+                </div>
+            </div>
+        </div>
+    </section>`
+}
+
+function insertUsersPostIconInOpenComment(indexOfComment){
+    document.getElementById(`insertCommentsInOpenComment`).innerHTML =``;
+    document.getElementById(`insertCommentsInOpenComment`).innerHTML +=`
+    <div class="postHeaderOpenedCommentWrapper">
+        <div class="postHeaderOpenedComment">
+            <div class="otherUserWrapper">
+                <div class="userPostIcon">
+                    <img src="${arrayUserImages[indexOfComment]}" alt="">
+                </div>
+                    <div class="NameAndBio">
+                        <span><b>${arrayUserName[indexOfComment]}</b></span>
+                    </div>
+                </div>
+                <i class="fas fa-ellipsis-h"></i>
+            </div>
+        </div>
+    </div>
+    <div id="insertOnlyComments">
+    </div>
+    `;
+}
+
+// Loops through the emojiArray to display the emojies in the emoji container
+function displayEmoji(emojiIndex, indexOfSelectedPost){
+    document.getElementById(emojiIndex).innerHTML ='';
+    for (let i = 0; i < emojiArray.length; i++) {
+        const element = emojiArray[i];
+        document.getElementById(emojiIndex).innerHTML += `
+        <a class="emojiSize" onclick="getEmoji('${element}','${indexOfSelectedPost}'), preventsClosing(event)">${element}</a>
+    `
+    }
+}
+
+function insertPost(){
+    document.getElementById('insertPost').innerHTML ='';
+    for (let i = 0; i < arrayUserImages.length; i++) {
+        document.getElementById('insertPost').innerHTML +=`
+        <div class="post">
+            <div>
+                <div class="postHeader">
+                <div class="otherUserWrapper">
+                    <div class="userPostIcon">
+                    <img src="${arrayUserImages[i]}" alt="">
+                    </div>
+                        <div class="NameAndBio">
+                        <span><b>${arrayUserName[i]}</b></span>
+                        </div>
+                    </div>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="likeIconAndImage">
+                    <a ondblclick="checkIfDoubleClickOnPostImg('${i}')" id="img${i}"><img src="${usersPost[i].authorImage}" alt=""></a>
+                    <svg class="heartStroke" id="heartStroke${i}" viewBox="0 0 512 512" width="100" title="heart">
+                        <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
+                    </svg>
+                    <svg class="heartFadeOut" viewBox="0 0 512 512" width="100" title="heart">
+                        <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
+                    </svg>
+                </div>
+                <div class="socialToolsContainerSideSpacing">
+                    <div class="socialToolsContainer">
+                        <div>
+                            ${heartSymbol(i)}
+                            <a onclick="openComment('${i}')"><i class="far fa-comment rightPadding" id="openComment${i}" ></i></a>
+                            <i class="far fa-paper-plane" id="rightPadding"></i>
+                        </div>
+                        <a onclick="fillBookMark('bookmMark${i}')"><i class="far fa-bookmark" id="bookmMark${i}"></i></a>
+                    </div>
+                    <div id="likes"><b>12,30k likes</b></div>
+                            <div class="commentSection" id="insertComment${i}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="commentInputContainer">
+                        <div class="posRelative">
+                            <div class="emojiPosAbsolute">
+                                <div class="emojiWrapper">
+                                    <div class="emojiContainer" id="enterEmoji${i}">
+                                    </div>
+                                </div>
+                            </div>                        
+                            <a onclick="openEmojiPicker('enterEmoji${i}','${i}'), preventsClosing(event)"><i class="far fa-smile"></i></a>
+                        </div>
+                        <input type="text" oninput="checkIfCommentInputIsFilled('${i}')" placeholder="Add a comment..." id="commentInput${i}" class="commentInput">
+                        <button class="postComment" id="postComment${i}" onclick="submitComment('${i}')" disabled>Post</button>
+                    </div>
+                     
+                </div>
+        `;
+        insertComment(i);
+    }
+}
+//This function is there for if the user has liked a comment before that it stays filled if the requirments match the criteria
+function heartSymbol(i){
+    if(usersPost[i].likedByUser == 0){
+        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}')" id="heart${i}"><i class="far fa-heart" id="rightPadding"></i></a>`
+    }else if(usersPost[i].likedByUser > 0){
+        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}')" id="heart${i}"><i class="fas fa-heart" id="rightPadding"></i></a>`
+    }
+}
+
+// Loops through the JSON userPost Array and inserts the comment in the correct user post index
+function insertComment(ind){
+    document.getElementById(`insertComment${ind}`).innerHTML= ``;
+    checkIfCommentInputIsFilled(ind);
+    for (let i = 0; i < usersPost[ind].comments.length; i++) {
+        let comment = usersPost[ind].comments[i];
+        
+        document.getElementById(`insertComment${ind}`).innerHTML += `
+        <div class="userComment" id="maxWidth${ind}${i}">
+            <div id="userCommentBox${ind}${i}" class="row"><span id="userNameComment">${usersPost[ind].comments[i].username}</span> <p class="userCommentText"id="userComment${ind}${i}">${usersPost[ind].comments[i].comment}</p></div>
+            
+        </div>
+    `;
+    checkIfCommentRowIsTooWide(`userCommentBox${ind}${i}`,`${ind}${i}`, `maxWidth${ind}${i}`);
+    }
+}
+
+function insertImgInStories(){
+    document.getElementById('insertImgStoryHere').innerHTML ='';
+    for (let i = 0; i < arrayUserImages.length; i++) {
+        document.getElementById('insertImgStoryHere').innerHTML +=`
+        <div class="userIconAndNameContainer">
+            <div class="userStoryIcon" id="userImageStory">
+                <img src="${arrayUserImages[i]}" alt="">
+            </div>
+            <span class="userNameStory">${arrayUserName[i]}</span>
+        </div>
+    `
+        
+    };
+}
+
+function insertImgInSuggestions(){
+    document.getElementById('insertSuggestions').innerHTML ='';
+    for (let i = 0; i < suggestedUsersImg.length; i++) {
+    document.getElementById('insertSuggestions').innerHTML +=`
+        <div class="suggestionsContainer">
+            <div class="otherUserWrapper">
+                <div class="otherUserSuggestIcon">
+                <img src="${suggestedUsersImg[i]}" alt="">
+                </div>
+                <div class="NameAndBio">
+                <span><b>${suggestedUsersName[i]}</b></span><br>
+                <span class="bio">Insanley popular</span> 
+                </div>
+                
+            </div>
+            <a class="follow">Follow</a>
+        </div>
+    `;
+    }
 }
