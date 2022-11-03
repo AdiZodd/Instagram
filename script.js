@@ -93,8 +93,8 @@ function initWebsite(){
 }
 
 function insertUserImg(){
-        document.getElementById('insertUserImg').innerHTML ='';
-        document.getElementById('insertUserImg').innerHTML += `<img src="images/mainUserImg/1.jpg" alt="">`;
+    document.getElementById('insertUserImg').innerHTML ='';
+    document.getElementById('insertUserImg').innerHTML += `<img src="images/mainUserImg/1.jpg" alt="">`;
 }
 
 function insertUserImg1(){
@@ -104,6 +104,10 @@ function insertUserImg1(){
 
 function fillBookMark(i){
     let selectedBookMark = document.getElementById(i);
+    ifSelectedBookMarkIsNotFilledFillItElseEmptyTheFilling(selectedBookMark);
+}
+
+function ifSelectedBookMarkIsNotFilledFillItElseEmptyTheFilling(selectedBookMark){
     if(selectedBookMark.classList.contains("far")){
         selectedBookMark.classList.remove("far")
         selectedBookMark.classList.add("fas")
@@ -115,36 +119,65 @@ function fillBookMark(i){
 
 //Checks if the div-container-comment width exceeds the div-post-container width
 function checkIfCommentRowIsTooWide(userCommentBox,index, maxWidth){ 
-    console.log(index);
     let desiredWidth = document.getElementById(maxWidth).getBoundingClientRect().width;
     let commentWidth = document.getElementById(userCommentBox).getBoundingClientRect().width;
     
-
-    if(commentWidth > desiredWidth){
-        document.getElementById(userCommentBox).classList.add('noTextOverflow');
-        document.getElementById(userCommentBox).innerHTML +=`<a onclick="readMore('${index}')" id="readMoreBtn${index}">readmore</a>`
+    if(commentWidthIsBiggerThanDesiredWidth(commentWidth, desiredWidth)){
+        addNoTextOverFlow(userCommentBox);
+        addReadMoreBtn(userCommentBox, index);
     }
 }
 
+function commentWidthIsBiggerThanDesiredWidth(commentWidth, desiredWidth){
+    return commentWidth > desiredWidth;
+}
+
+//No text overflow allows the comment to be in one row
+function addNoTextOverFlow(userCommentBox){
+    document.getElementById(userCommentBox).classList.add('noTextOverflow');
+}
+
+function addReadMoreBtn (userCommentBox, index){
+    document.getElementById(userCommentBox).innerHTML +=`<a onclick="readMore('${index}')" id="readMoreBtn${index}">readmore</a>`
+}
+
+
+/*This function is enabled as soon as the user clicks on a readMoreBtn. First it gets every value and ID it needs then it proceeds to check
+if the given userComment has overflow enabled. If so then it is most likely a paragraph that has readLess as a button.
+One more if statement (function checkIfRowHasReadLessOrNot) examines if that's the case. If it is then it should remove the readLessBtn and
+add a readMoreBtn instead.*/
 function readMore(id){
     let pUserComment = document.getElementById(`userComment${id}`);
-    let divUserCommentBox = document.getElementById(`userCommentBox${id}`);
     let currentReadMoreBtn = document.getElementById(`readMoreBtn${id}`);
     let getCSSStyleOverflow = window.getComputedStyle(pUserComment).getPropertyValue('overflow');
 
-    if(getCSSStyleOverflow === "visible"){
-        if(currentReadMoreBtn.classList.contains('inParagraph')){
-            removeReadMoreAndPutItIntoDivTag(currentReadMoreBtn, divUserCommentBox, id);
-        }else{currentReadMoreBtn.innerHTML = "readmore";}
+    if(ifUserCommentHasOverFlowEnabled(getCSSStyleOverflow)){
+        checkIfRowHasReadLessOrNot(currentReadMoreBtn, `userCommentBox${id}`, id)
     }else{
         removeReadMoreAndPutItIntoPTag(currentReadMoreBtn, pUserComment, id);
     }
     toogleOverflowInHTMLElements(id);
 }
 
-function removeReadMoreAndPutItIntoDivTag(currentReadMoreBtn, divUserCommentBox, id){
+function ifUserCommentHasOverFlowEnabled(getCSSStyleOverflow){
+    return getCSSStyleOverflow === "visible";
+}
+
+function checkIfRowHasReadLessOrNot(currentReadMoreBtn, userCommentBox, id){
+    if(rowHasReadLess(currentReadMoreBtn)){
+        removeReadLessAndAddReadMore(currentReadMoreBtn, userCommentBox, id);
+    }else{
+        currentReadMoreBtn.innerHTML = "readmore";
+    }
+}
+
+function rowHasReadLess(currentReadMoreBtn){
+    return currentReadMoreBtn.classList.contains('inParagraph')
+}
+
+function removeReadLessAndAddReadMore(currentReadMoreBtn, userCommentBox, id){
     currentReadMoreBtn.remove();
-    divUserCommentBox.innerHTML +=`<a onclick="readMore('${id}')" id="readMoreBtn${id}">readmore</a>`
+    addReadMoreBtn(userCommentBox, id);
 }
 
 function removeReadMoreAndPutItIntoPTag(currentReadMoreBtn, pUserComment, id){
