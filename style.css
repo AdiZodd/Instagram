@@ -367,10 +367,18 @@ svg{
     padding-right: 12px;
 }#likes{
     margin-top: 12px;
+}.descriptionSection{
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }.commentSection{
     scrollbar-width:none;
     max-height: 200px;
     font-size: 14px;
+}.commentSection a{
+    color: #8e8e8e;
+}.commentSection a:hover{
+    text-decoration: underline;
 }.newPost{
     animation: newPostAnim 525ms ease-in-out;
 }.userComment{

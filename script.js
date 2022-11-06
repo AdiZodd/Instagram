@@ -12,6 +12,7 @@ let usersPost = [{
     "author": arrayUserName[0],
     "authorProfileImg": arrayUserImages[0],
     "authorImage": "images/postImages/1.jpg",
+    "description": "I am flying through the sky",
     "comments":[{
                 "username": "mr_smartass",
                 "comment": "I don't like the fact that we can't see your face on instagram."
@@ -24,22 +25,20 @@ let usersPost = [{
     "author": arrayUserName[1],
     "authorProfileImg": arrayUserImages[1],
     "authorImage": "images/postImages/2.jpg",
+    "description": "I have walked a good 10 miles to this place but it was so worth it. Look at this beauty 😍. I would recommend you all to take a break from your office jobs, city life, stressful lifestyle and let nature clense your sould.",
     "comments":[{
                 "username": "becky",
                 "comment": "This looks beautiful 😍"
             },{
                 "username": "john96",
                 "comment": "How did you take that picture???",
-            },{
-                
-                "username": "john.willnik",
-                "comment": "I hope you are getting after it💪!",
             }],
     "likedByUser": 0,
         },{
     "author": arrayUserName[2],
     "authorProfileImg": arrayUserImages[2],
     "authorImage": "images/postImages/3.jpg",
+    "description": "Tomorrowland is fucking lit!",
     "comments":[{
                 "username": "zack",
                 "comment": "My man is going ham!!!!!✊✊✊✊✊✊"
@@ -56,6 +55,7 @@ let usersPost = [{
     "author": arrayUserName[3],
     "authorProfileImg": arrayUserImages[3],
     "authorImage": "images/postImages/4.jpg",
+    "description": "Brazilien ist das Land was jeder einmal besuchen gehen sollte!",
     "comments":[{
                 "username": "sarah.spieske",
                 "comment": "Das sieht echt schön aus!😍 Scheiße das ich nicht da bin 😭😭😭😭😭😭😭😭😭"
@@ -71,6 +71,7 @@ let usersPost = [{
     "author": arrayUserName[4],
     "authorProfileImg": arrayUserImages[4],
     "authorImage": "images/postImages/5.jpg",
+    "description": "My job as a photographer is to show our human life to the fullest. This old homeless man lost his wife just a few days ago due to an attack by other homeless people. I am sending out for help. Help this man. Contact me ASAP! DM me.",
     "comments":[{
                 "username": "michele_benton",
                 "comment": "Freaking hell mate! This is sad. I hope he is fine"
@@ -276,8 +277,8 @@ function getEmoji(selectedEmoji, indexofInputField){
     document.getElementById(`commentInput${indexofInputField}`).value += `${selectedEmoji}`;
     checkIfCommentInputIsFilled(indexofInputField);
 }
-//Closes the current active emojiBox when clicked on the body by using finding out its ID and removes the active
-//currentActiceEmoji is a variable that is being saved by the savesTheCurrentDisplayedEmojiInAVariable() function
+//Closes the current active emojiBox when clicked on the body by  finding out its ID and removes the active
+//currentActiceEmoji is a variable that is being saved by the savesTheCurrentDisplayedEmojiInAVariable() function to determine the ID
 function closeEmojiBoxWhenClickedOutsideOfDiv(){
     let emojiContainer = document.getElementById(currentActiceEmoji);
     if(emojiContainer == null){
@@ -401,6 +402,10 @@ function closesComment(){
     section.remove();
 }
 
+function focusOnCommentInputWhenCommentHasBeenOpenend(index){
+    document.getElementById(`commentInputOpenedComment${index}`).focus();
+}
+
 // ------------------------Below are .innerHTML code blocks--------------------------------- \\
 
 function insertCommentsInOpenComment(indexOfComment){
@@ -426,7 +431,7 @@ function insertSocialToolsInOpenComment(indexOfComment){
     <div class="socialToolsContainer marginLeftAndRight">
         <div>
             ${heartSymbolForOpenedComment(indexOfComment)}
-            <a ><i class="far fa-comment rightPadding" id="focusOnComment${indexOfComment}" ></i></a>
+            <a onclick="focusOnCommentInputWhenCommentHasBeenOpenend(${indexOfComment})"><i class="far fa-comment rightPadding" id="focusOnComment${indexOfComment}" ></i></a>
             <i class="far fa-paper-plane" id="rightPadding"></i>
         </div>
         <a onclick="fillBookMark('bookmMark${indexOfComment}')"><i class="far fa-bookmark" id="bookmMark${indexOfComment}"></i></a>
@@ -498,7 +503,7 @@ function insertUsersPostIconInOpenComment(indexOfComment){
                     </div>
                 </div>
                 <i class="fas fa-ellipsis-h"></i>
-            </div>
+            </div> 
         </div>
     </div>
     <div id="insertOnlyComments">
@@ -547,13 +552,15 @@ function insertPost(){
                     <div class="socialToolsContainer">
                         <div>
                             ${heartSymbol(i)}
-                            <a onclick="openComment('${i}')"><i class="far fa-comment rightPadding" id="openComment${i}" ></i></a>
+                            <a><i class="far fa-comment rightPadding"></i></a>
                             <i class="far fa-paper-plane" id="rightPadding"></i>
                         </div>
                         <a onclick="fillBookMark('bookmMark${i}')"><i class="far fa-bookmark" id="bookmMark${i}"></i></a>
                     </div>
                     <div id="likes"><b>12,30k likes</b></div>
+                            <div class="descriptionSection" id="insertDescription${i}"></div>
                             <div class="commentSection" id="insertComment${i}">
+                            <a onclick="openComment('${i}')" id="openComment${i}">view all ${usersPost[i].comments.length} comments</a>
                             </div>
                         </div>
                     </div>
@@ -573,7 +580,7 @@ function insertPost(){
                      
                 </div>
         `;
-        insertComment(i);
+        insertDescription(i);
     }
 }
 //This function is there for if the user has liked a comment before that it stays filled if the requirments match the criteria
@@ -583,6 +590,13 @@ function heartSymbol(i){
     }else if(usersPost[i].likedByUser > 0){
         return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}')" id="heart${i}"><i class="fas fa-heart" id="rightPadding"></i></a>`
     }
+}
+
+function insertDescription(ind){
+    document.getElementById(`insertDescription${ind}`).innerHTML= ``;
+    document.getElementById(`insertDescription${ind}`).innerHTML += `
+        ${usersPost[ind].description}
+    `;
 }
 
 // Loops through the JSON userPost Array and inserts the comment in the correct user post index
