@@ -195,7 +195,8 @@ function submitComment(i){
     let newComment = document.getElementById(`commentInput${i}`).value;
         usersPost[OnlyUsesNumbersFromTheIndex(i)].comments.push({ username: currentUser, comment: newComment });
         document.getElementById(`commentInput${i}`).value='';
-        insertComment(OnlyUsesNumbersFromTheIndex(i));
+        // insertComment(OnlyUsesNumbersFromTheIndex(i));
+        checkIfCommentInputIsFilled(i);
         checksIfThereIsAnOpenedComment(OnlyUsesNumbersFromTheIndex(i));
         setLastChildInArrayCSSElement(i);
 }
@@ -294,16 +295,16 @@ function preventsClosing(event){
 }
 
 
-function likesOrUnlikesTheSelectedComment(indexOfHeart, indexOfHeartNumber){
+function likesOrUnlikesTheSelectedComment(indexOfHeart, indexOfHeartNumber, indexOfHeartAnimation){
     
     if (valueOfLikedByUserIsZero(indexOfHeartNumber)){
         incrementsLikedByUserByOne(indexOfHeartNumber);
         fillLikeBtn(indexOfHeart);
-        addHeartAnimation(indexOfHeartNumber);
+        addHeartAnimation(indexOfHeartAnimation);
     }else if(valueOfLikedByUserIsNotZero(indexOfHeartNumber)){
         subtractLikedByUserByOne(indexOfHeartNumber);
         unfillLikeBtn(indexOfHeart);
-        removeHeartAnimation(indexOfHeartNumber);
+        removeHeartAnimation(indexOfHeartAnimation);
     }
     
 }
@@ -314,27 +315,15 @@ function incrementsLikedByUserByOne(indexOfHeartNumber){
     usersPost[indexOfHeartNumber].likedByUser++;
 }
 function valueOfLikedByUserIsNotZero(indexOfHeartNumber){
-    return usersPost[indexOfHeartNumber].likedByUser !== 0
+    return usersPost[indexOfHeartNumber].likedByUser !== 0;
 }
 function subtractLikedByUserByOne(indexOfHeartNumber){
     usersPost[indexOfHeartNumber].likedByUser--;
 }
 
-// function fillorUnfillLikeBtn(index, i){
-//     let filled = "<i class=\"fas fa-heart\" id=\"rightPadding\" aria-hidden=\"true\"></i>";
-//     let id = document.getElementById(index);
-
-//     if (filled != id.innerHTML){
-//         fillLikeBtn(index);
-//         addHeartAnimation(i);
-//     }else{
-//         unfillLikeBtn(index);
-//         removeHeartAnimation(i);
-//     }
-// }
 
 function addHeartAnimation(i){
-    let classHeartStroke = document.getElementById(`heartStroke${i}`);
+    let classHeartStroke = document.getElementById(`${i}`);
     classHeartStroke.classList.add('active');
 }
 
@@ -344,7 +333,7 @@ function toggleHeartAnimation(i){
 }
 
 function removeHeartAnimation(i){
-    let classHeartStroke = document.getElementById(`heartStroke${i}`);
+    let classHeartStroke = document.getElementById(`${i}`);
     classHeartStroke.classList.remove('active');
 }
 
@@ -440,9 +429,9 @@ function insertSocialToolsInOpenComment(indexOfComment){
 //This function is there for if the user has liked a comment before that it stays filled if the requirments match the criteria
 function heartSymbolForOpenedComment(i){
     if(usersPost[i].likedByUser == 0){
-        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heartOpenedComment${i}', '${i}')" id="heartOpenedComment${i}"><i class="far fa-heart" id="rightPadding"></i></a>`
+        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heartOpenedComment${i}', '${i}','heartStrokeOpenedComment${i}')" id="heartOpenedComment${i}"><i class="far fa-heart" id="rightPadding"></i></a>`
     }else if(usersPost[i].likedByUser > 0){
-        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heartOpenedComment${i}', '${i}')" id="heartOpenedComment${i}"><i class="fas fa-heart" id="rightPadding"></i></a>`
+        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heartOpenedComment${i}', '${i}', 'heartStrokeOpenedComment${i}')" id="heartOpenedComment${i}"><i class="fas fa-heart" id="rightPadding"></i></a>`
     }
 }
 
@@ -583,12 +572,12 @@ function insertPost(){
         insertDescription(i);
     }
 }
-//This function is there for if the user has liked a comment before that it stays filled if the requirments match the criteria
+//This function is there for if the user has liked a comment before that it stays filled if the requirments have been matched
 function heartSymbol(i){
     if(usersPost[i].likedByUser == 0){
-        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}')" id="heart${i}"><i class="far fa-heart" id="rightPadding"></i></a>`
+        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}', 'heartStroke${i}')" id="heart${i}"><i class="far fa-heart" id="rightPadding"></i></a>`
     }else if(usersPost[i].likedByUser > 0){
-        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}')" id="heart${i}"><i class="fas fa-heart" id="rightPadding"></i></a>`
+        return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}', 'heartStroke${i}')" id="heart${i}"><i class="fas fa-heart" id="rightPadding"></i></a>`
     }
 }
 
@@ -600,21 +589,20 @@ function insertDescription(ind){
 }
 
 // Loops through the JSON userPost Array and inserts the comment in the correct user post index
-function insertComment(ind){
-    document.getElementById(`insertComment${ind}`).innerHTML= ``;
-    checkIfCommentInputIsFilled(ind);
-    for (let i = 0; i < usersPost[ind].comments.length; i++) {
-        let comment = usersPost[ind].comments[i];
+// function insertComment(ind){
+    
+//     for (let i = 0; i < usersPost[ind].comments.length; i++) {
+//         let comment = usersPost[ind].comments[i];
         
-        document.getElementById(`insertComment${ind}`).innerHTML += `
-        <div class="userComment" id="maxWidth${ind}${i}">
-            <div id="userCommentBox${ind}${i}" class="row"><span id="userNameComment">${usersPost[ind].comments[i].username}</span> <p class="userCommentText"id="userComment${ind}${i}">${usersPost[ind].comments[i].comment}</p></div>
+//         document.getElementById(`insertComment${ind}`).innerHTML += `
+//         <div class="userComment" id="maxWidth${ind}${i}">
+//             <div id="userCommentBox${ind}${i}" class="row"><span id="userNameComment">${usersPost[ind].comments[i].username}</span> <p class="userCommentText"id="userComment${ind}${i}">${usersPost[ind].comments[i].comment}</p></div>
             
-        </div>
-    `;
-    checkIfCommentRowIsTooWide(`userCommentBox${ind}${i}`,`${ind}${i}`, `maxWidth${ind}${i}`);
-    }
-}
+//         </div>
+//     `;
+//     checkIfCommentRowIsTooWide(`userCommentBox${ind}${i}`,`${ind}${i}`, `maxWidth${ind}${i}`);
+//     }
+// }
 
 function insertImgInStories(){
     document.getElementById('insertImgStoryHere').innerHTML ='';
