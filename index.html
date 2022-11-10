@@ -19,7 +19,7 @@
                 <img src="images/instaLogo.png" alt="">
             </div>
             <div class="inputWithIcon">
-                <input type="text" placeholder="Search" id="searchInput" onclick="tooglesActiveOnSearchInputWhenClicked('searchInput')" oninput="tooglesActiveOnSearchInputWhenClicked('searchInput')">
+                <input type="text" placeholder="Search" id="searchInput" onclick="tooglesActiveOnSearchInputWhenClicked('searchInput')" oninput="tooglesActiveOnSearchInputWhenClicked('searchInput')"" onkeydown="searchFilter()" onchange="searchFilter()">
                 <i class="fas fa-search"></i>
                 <i class="far fa-times-circle" onclick="removeSearchInput('searchInput')"></i>
             </div>

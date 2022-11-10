@@ -1,11 +1,11 @@
 
 
-let arrayUserImages = ['images/userProfileImg/1.jpg', 'images/userProfileImg/2.jpg', 'images/userProfileImg/3.jpg', 'images/userProfileImg/4.jpg','images/userProfileImg/5.jpg'];
-let arrayUserName = ['jane', 'carlos', 'markos', 'iza','stella'];
+let arrayUserImages = ['images/userProfileImg/1.jpg', 'images/userProfileImg/2.jpg', 'images/userProfileImg/3.jpg', 'images/userProfileImg/4.jpg', 'images/userProfileImg/5.jpg'];
+let arrayUserName = ['jane', 'carlos', 'markos', 'iza', 'stella'];
 let currentUser = 'admirkozlica';
 let suggestedUsersImg = ['images/suggestionImg/1.jpg', 'images/suggestionImg/2.jpg', 'images/suggestionImg/3.jpg', 'images/suggestionImg/4.jpg', 'images/suggestionImg/5.jpg'];
 let suggestedUsersName = ['missemma', 'getafter.it', 'gordanfreeman', 'mynameis.cat', 'lisa'];
-let emojiArray =['😀','&#128513','&#128514', '&#128515', '&#128516', '&#128517', '&#128518', '&#128519', '&#128520', '&#128521', '&#128522', '&#128523', '&#128524', '&#128525', '&#128526', '&#128527', '&#128528', '&#128529', '&#128530', '&#128531', '&#128532', '&#128533', '&#128534', '&#128535', '&#128536', '&#128537', '&#128538', '&#128539','&#128540', '&#128541','&#128542','&#128543', '&#128544','&#128545','&#128546', '&#128547','&#128548','&#128549','&#128550','&#128551','&#128552','&#128553','&#128554','&#128555','&#128556','&#128557','&#128558','&#128559','&#128560','&#128561','&#128562','&#128563','&#128564','&#128565','&#128566','&#128567'];
+let emojiArray = ['😀', '&#128513', '&#128514', '&#128515', '&#128516', '&#128517', '&#128518', '&#128519', '&#128520', '&#128521', '&#128522', '&#128523', '&#128524', '&#128525', '&#128526', '&#128527', '&#128528', '&#128529', '&#128530', '&#128531', '&#128532', '&#128533', '&#128534', '&#128535', '&#128536', '&#128537', '&#128538', '&#128539', '&#128540', '&#128541', '&#128542', '&#128543', '&#128544', '&#128545', '&#128546', '&#128547', '&#128548', '&#128549', '&#128550', '&#128551', '&#128552', '&#128553', '&#128554', '&#128555', '&#128556', '&#128557', '&#128558', '&#128559', '&#128560', '&#128561', '&#128562', '&#128563', '&#128564', '&#128565', '&#128566', '&#128567'];
 let currentActiceEmoji = '';
 
 let usersPost = [{
@@ -13,133 +13,133 @@ let usersPost = [{
     "authorProfileImg": arrayUserImages[0],
     "authorImage": "images/postImages/1.jpg",
     "description": "I am flying through the sky",
-    "comments":[{
-                "username": "mr_smartass",
-                "comment": "I don't like the fact that we can't see your face on instagram."
-            },{
-                "username": "karsten",
-                "comment": "Looks good👌",
-            }],
+    "comments": [{
+        "username": "mr_smartass",
+        "comment": "I don't like the fact that we can't see your face on instagram."
+    }, {
+        "username": "karsten",
+        "comment": "Looks good👌",
+    }],
     "likedByUser": 0,
-        },{
+}, {
     "author": arrayUserName[1],
     "authorProfileImg": arrayUserImages[1],
     "authorImage": "images/postImages/2.jpg",
     "description": "I have walked a good 10 miles to this place but it was so worth it. Look at this beauty 😍. I would recommend you all to take a break from your office jobs, city life, stressful lifestyle and let nature clense your sould.",
-    "comments":[{
-                "username": "becky",
-                "comment": "This looks beautiful 😍"
-            },{
-                "username": "john96",
-                "comment": "How did you take that picture???",
-            }],
+    "comments": [{
+        "username": "becky",
+        "comment": "This looks beautiful 😍"
+    }, {
+        "username": "john96",
+        "comment": "How did you take that picture???",
+    }],
     "likedByUser": 0,
-        },{
+}, {
     "author": arrayUserName[2],
     "authorProfileImg": arrayUserImages[2],
     "authorImage": "images/postImages/3.jpg",
     "description": "Tomorrowland is fucking lit!",
-    "comments":[{
-                "username": "zack",
-                "comment": "My man is going ham!!!!!✊✊✊✊✊✊"
-            },{
-                "username": "gravy_rock76",
-                "comment": "Man this looks fun.. gotta be there 👏",
-            },{
-                
-                "username": "gopnik.fromrussia",
-                "comment": "parties in my country are better",
-            }],
-    "likedByUser": 0, 
-        },{
+    "comments": [{
+        "username": "zack",
+        "comment": "My man is going ham!!!!!✊✊✊✊✊✊"
+    }, {
+        "username": "gravy_rock76",
+        "comment": "Man this looks fun.. gotta be there 👏",
+    }, {
+
+        "username": "gopnik.fromrussia",
+        "comment": "parties in my country are better",
+    }],
+    "likedByUser": 0,
+}, {
     "author": arrayUserName[3],
     "authorProfileImg": arrayUserImages[3],
     "authorImage": "images/postImages/4.jpg",
     "description": "Brazilien ist das Land was jeder einmal besuchen gehen sollte!",
-    "comments":[{
-                "username": "sarah.spieske",
-                "comment": "Das sieht echt schön aus!😍 Scheiße das ich nicht da bin 😭😭😭😭😭😭😭😭😭"
-            },{
-                "username": "hanz_richter",
-                "comment": "Geile Atmosphäre👏! Bald geht's mit meiner Familie ebenfalls nach Brazilien 😉.",
-            },{
-                "username": "laura.97",
-                "comment": "Heyyyyyyy!!! Lange nicht mehr gesehen🤗🤗🤗! Wie geht es dir?😜",
-            }],
-    "likedByUser": 0, 
-        },{
+    "comments": [{
+        "username": "sarah.spieske",
+        "comment": "Das sieht echt schön aus!😍 Scheiße das ich nicht da bin 😭😭😭😭😭😭😭😭😭"
+    }, {
+        "username": "hanz_richter",
+        "comment": "Geile Atmosphäre👏! Bald geht's mit meiner Familie ebenfalls nach Brazilien 😉.",
+    }, {
+        "username": "laura.97",
+        "comment": "Heyyyyyyy!!! Lange nicht mehr gesehen🤗🤗🤗! Wie geht es dir?😜",
+    }],
+    "likedByUser": 0,
+}, {
     "author": arrayUserName[4],
     "authorProfileImg": arrayUserImages[4],
     "authorImage": "images/postImages/5.jpg",
     "description": "My job as a photographer is to show our human life to the fullest. This old homeless man lost his wife just a few days ago due to an attack by other homeless people. I am sending out for help. Help this man. Contact me ASAP! DM me.",
-    "comments":[{
-                "username": "michele_benton",
-                "comment": "Freaking hell mate! This is sad. I hope he is fine"
-            },{
-                "username": "ajay47",
-                "comment": "Can somebody tell me what is going on?!",
-            },{
-                "username": "mr_smartass",
-                "comment": "Just look at the descripton man, you're welcome!",
-            }],
-    "likedByUser": 0, 
-        }]
+    "comments": [{
+        "username": "michele_benton",
+        "comment": "Freaking hell mate! This is sad. I hope he is fine"
+    }, {
+        "username": "ajay47",
+        "comment": "Can somebody tell me what is going on?!",
+    }, {
+        "username": "mr_smartass",
+        "comment": "Just look at the descripton man, you're welcome!",
+    }],
+    "likedByUser": 0,
+}]
 
-function initWebsite(){
+function initWebsite() {
     insertImgInStories();
     insertUserImg();
     insertUserImg1();
     insertImgInSuggestions();
-    insertPost();
+    insertPostLoop();
 }
 
-function insertUserImg(){
-    document.getElementById('insertUserImg').innerHTML ='';
+function insertUserImg() {
+    document.getElementById('insertUserImg').innerHTML = '';
     document.getElementById('insertUserImg').innerHTML += `<img src="images/mainUserImg/1.jpg" alt="">`;
 }
 
-function insertUserImg1(){
-    document.getElementById('insertUserImg1').innerHTML ='';
+function insertUserImg1() {
+    document.getElementById('insertUserImg1').innerHTML = '';
     document.getElementById('insertUserImg1').innerHTML += `<img src="images/mainUserImg/1.jpg" alt="">`;
 }
 
-function fillBookMark(i){
+function fillBookMark(i) {
     let selectedBookMark = document.getElementById(i);
     ifSelectedBookMarkIsNotFilledFillItElseEmptyTheFilling(selectedBookMark);
 }
 
-function ifSelectedBookMarkIsNotFilledFillItElseEmptyTheFilling(selectedBookMark){
-    if(selectedBookMark.classList.contains("far")){
+function ifSelectedBookMarkIsNotFilledFillItElseEmptyTheFilling(selectedBookMark) {
+    if (selectedBookMark.classList.contains("far")) {
         selectedBookMark.classList.remove("far")
         selectedBookMark.classList.add("fas")
-    }else{
+    } else {
         selectedBookMark.classList.remove("fas")
         selectedBookMark.classList.add("far")
     }
 }
 
 //Checks if the div-container-comment width exceeds the div-post-container width
-function checkIfCommentRowIsTooWide(userCommentBox,index, maxWidth){ 
+function checkIfCommentRowIsTooWide(userCommentBox, index, maxWidth) {
     let desiredWidth = document.getElementById(maxWidth).getBoundingClientRect().width;
     let commentWidth = document.getElementById(userCommentBox).getBoundingClientRect().width;
-    
-    if(commentWidthIsBiggerThanDesiredWidth(commentWidth, desiredWidth)){
+
+    if (commentWidthIsBiggerThanDesiredWidth(commentWidth, desiredWidth)) {
         addNoTextOverFlow(userCommentBox);
         addReadMoreBtn(userCommentBox, index);
     }
 }
 
-function commentWidthIsBiggerThanDesiredWidth(commentWidth, desiredWidth){
+function commentWidthIsBiggerThanDesiredWidth(commentWidth, desiredWidth) {
     return commentWidth > desiredWidth;
 }
 
 //No text overflow allows the comment to be in one row
-function addNoTextOverFlow(userCommentBox){
+function addNoTextOverFlow(userCommentBox) {
     document.getElementById(userCommentBox).classList.add('noTextOverflow');
 }
 
-function addReadMoreBtn (userCommentBox, index){
-    document.getElementById(userCommentBox).innerHTML +=`<a onclick="readMore('${index}')" id="readMoreBtn${index}">readmore</a>`
+function addReadMoreBtn(userCommentBox, index) {
+    document.getElementById(userCommentBox).innerHTML += `<a onclick="readMore('${index}')" id="readMoreBtn${index}">readmore</a>`
 }
 
 
@@ -147,61 +147,61 @@ function addReadMoreBtn (userCommentBox, index){
 if the given userComment has overflow enabled. If so then it is most likely a paragraph that has readLess as a button.
 One more if statement (function checkIfRowHasReadLessOrNot) examines if that's the case. If it is then it should remove the readLessBtn and
 add a readMoreBtn instead.*/
-function readMore(id){
+function readMore(id) {
     let pUserComment = document.getElementById(`userComment${id}`);
     let currentReadMoreBtn = document.getElementById(`readMoreBtn${id}`);
     let getCSSStyleOverflow = window.getComputedStyle(pUserComment).getPropertyValue('overflow');
 
-    if(ifUserCommentHasOverFlowEnabled(getCSSStyleOverflow)){
+    if (ifUserCommentHasOverFlowEnabled(getCSSStyleOverflow)) {
         checkIfRowHasReadLessOrNot(currentReadMoreBtn, `userCommentBox${id}`, id)
-    }else{
+    } else {
         removeReadMoreAndPutItIntoPTag(currentReadMoreBtn, pUserComment, id);
     }
     toogleOverflowInHTMLElements(id);
 }
 
-function ifUserCommentHasOverFlowEnabled(getCSSStyleOverflow){
+function ifUserCommentHasOverFlowEnabled(getCSSStyleOverflow) {
     return getCSSStyleOverflow === "visible";
 }
 
-function checkIfRowHasReadLessOrNot(currentReadMoreBtn, userCommentBox, id){
-    if(rowHasReadLess(currentReadMoreBtn)){
+function checkIfRowHasReadLessOrNot(currentReadMoreBtn, userCommentBox, id) {
+    if (rowHasReadLess(currentReadMoreBtn)) {
         removeReadLessAndAddReadMore(currentReadMoreBtn, userCommentBox, id);
-    }else{
+    } else {
         currentReadMoreBtn.innerHTML = "readmore";
     }
 }
 
-function rowHasReadLess(currentReadMoreBtn){
+function rowHasReadLess(currentReadMoreBtn) {
     return currentReadMoreBtn.classList.contains('inParagraph')
 }
 
-function removeReadLessAndAddReadMore(currentReadMoreBtn, userCommentBox, id){
+function removeReadLessAndAddReadMore(currentReadMoreBtn, userCommentBox, id) {
     currentReadMoreBtn.remove();
     addReadMoreBtn(userCommentBox, id);
 }
 
-function removeReadMoreAndPutItIntoPTag(currentReadMoreBtn, pUserComment, id){
+function removeReadMoreAndPutItIntoPTag(currentReadMoreBtn, pUserComment, id) {
     currentReadMoreBtn.remove();
-    pUserComment.innerHTML +=`<a onclick="readMore('${id}')" id="readMoreBtn${id}" class="inParagraph"><b> read less</b></a>`;
+    pUserComment.innerHTML += `<a onclick="readMore('${id}')" id="readMoreBtn${id}" class="inParagraph"><b> read less</b></a>`;
 }
 
-function toogleOverflowInHTMLElements(id){
+function toogleOverflowInHTMLElements(id) {
     document.getElementById(`userComment${id}`).classList.toggle('enableOverflow');
     document.getElementById(`userCommentBox${id}`).classList.toggle('noTextOverflow');
 }
 
-function submitComment(i){
+function submitComment(i) {
     let newComment = document.getElementById(`commentInput${i}`).value;
-        usersPost[OnlyUsesNumbersFromTheIndex(i)].comments.push({ username: currentUser, comment: newComment });
-        document.getElementById(`commentInput${i}`).value='';
-        // insertComment(OnlyUsesNumbersFromTheIndex(i));
-        checkIfCommentInputIsFilled(i);
-        checksIfThereIsAnOpenedComment(OnlyUsesNumbersFromTheIndex(i));
-        setLastChildInArrayCSSElement(i);
+    usersPost[OnlyUsesNumbersFromTheIndex(i)].comments.push({ username: currentUser, comment: newComment });
+    document.getElementById(`commentInput${i}`).value = '';
+    // insertComment(OnlyUsesNumbersFromTheIndex(i));
+    checkIfCommentInputIsFilled(i);
+    checksIfThereIsAnOpenedComment(OnlyUsesNumbersFromTheIndex(i));
+    setLastChildInArrayCSSElement(i);
 }
 
-function OnlyUsesNumbersFromTheIndex(i){
+function OnlyUsesNumbersFromTheIndex(i) {
 
     let requirements = /\d+/g;
     let result = i.match(requirements);
@@ -211,14 +211,14 @@ function OnlyUsesNumbersFromTheIndex(i){
 
 }
 
-function checksIfThereIsAnOpenedComment(indexOfComment){
-    if(document.getElementById('openedCommentSection')){
+function checksIfThereIsAnOpenedComment(indexOfComment) {
+    if (document.getElementById('openedCommentSection')) {
         insertCommentsInOpenComment(indexOfComment);
     }
 }
 
 //Gets the index of the last and second last element in the json array userPost.comments and adds to the last element the CSS class 'newPost' and removes it from the last element
-function setLastChildInArrayCSSElement(ind){
+function setLastChildInArrayCSSElement(ind) {
     let lastCommentIndex = usersPost[OnlyUsesNumbersFromTheIndex(ind)].comments.length - 1;
     let secondLastCommentIndex = lastCommentIndex - 1;
 
@@ -229,38 +229,39 @@ function setLastChildInArrayCSSElement(ind){
     lastUserComment.classList.add('newPost');
 }
 
-function tooglesActiveOnSearchInputWhenClicked(searchInputID){
+function tooglesActiveOnSearchInputWhenClicked(searchInputID) {
     let searchInput = document.getElementById(searchInputID);
-    if (searchInput.value){
+    if (searchInput.value) {
         searchInput.classList.add('active');
-    }else if(searchInput.value && searchInput.classList.contains('active')){
+    } else if (searchInput.value && searchInput.classList.contains('active')) {
         searchInput.classList.add('active');
-    }else{
+    } else {
         searchInput.classList.remove('active');
     }
-    
+
 }
 
-function removeSearchInput(searchInputID){
+function removeSearchInput(searchInputID) {
     document.getElementById(searchInputID).value = "";
     tooglesActiveOnSearchInputWhenClicked(searchInputID);
+    searchFilter(); //When 'X' button has been pressed by the user, all posts should be visible again. That is why this function is being opened as soon as the search input field has been emptied
 }
 
 
 // Inserts the index to find the correct id for the input field and the button. Then the function checks if the input is filled and disables or enables it accrodingly.
-function checkIfCommentInputIsFilled(i){
+function checkIfCommentInputIsFilled(i) {
     let input = document.getElementById(`commentInput${i}`);
     let btnPost = document.getElementById(`postComment${i}`);
 
-    if(input.value === ""){
+    if (input.value === "") {
         btnPost.disabled = true;
-    }else{
+    } else {
         btnPost.disabled = false;
     }
 }
 
 // Sets the correct emojiContainer to active
-function openEmojiPicker(emojiIndex, i){
+function openEmojiPicker(emojiIndex, i) {
     displayEmoji(emojiIndex, i);
     savesTheCurrentDisplayedEmojiInAVariable(emojiIndex);
 
@@ -268,117 +269,117 @@ function openEmojiPicker(emojiIndex, i){
     emojiContainer.classList.toggle('active');
 }
 
-function savesTheCurrentDisplayedEmojiInAVariable(emojiIndex){
-    currentActiceEmoji ='';
+function savesTheCurrentDisplayedEmojiInAVariable(emojiIndex) {
+    currentActiceEmoji = '';
     currentActiceEmoji = emojiIndex;
 }
 
 // 'indexofInputField' is being passed over by the function displayEmoji. First the function inserts the emoji into the correct input field and then it checks if the input is filled
-function getEmoji(selectedEmoji, indexofInputField){
+function getEmoji(selectedEmoji, indexofInputField) {
     document.getElementById(`commentInput${indexofInputField}`).value += `${selectedEmoji}`;
     checkIfCommentInputIsFilled(indexofInputField);
 }
 //Closes the current active emojiBox when clicked on the body by  finding out its ID and removes the active
 //currentActiceEmoji is a variable that is being saved by the savesTheCurrentDisplayedEmojiInAVariable() function to determine the ID
-function closeEmojiBoxWhenClickedOutsideOfDiv(){
+function closeEmojiBoxWhenClickedOutsideOfDiv() {
     let emojiContainer = document.getElementById(currentActiceEmoji);
-    if(emojiContainer == null){
+    if (emojiContainer == null) {
 
-    }else{
+    } else {
         emojiContainer.classList.remove('active');
     }
 }
 
 //If clicked on the desired div container it prevents any other functions from intervening
-function preventsClosing(event){
+function preventsClosing(event) {
     event.stopPropagation();
 }
 
 
-function likesOrUnlikesTheSelectedComment(indexOfHeart, indexOfHeartNumber, indexOfHeartAnimation){
-    
-    if (valueOfLikedByUserIsZero(indexOfHeartNumber)){
+function likesOrUnlikesTheSelectedComment(indexOfHeart, indexOfHeartNumber, indexOfHeartAnimation) {
+
+    if (valueOfLikedByUserIsZero(indexOfHeartNumber)) {
         incrementsLikedByUserByOne(indexOfHeartNumber);
         fillLikeBtn(indexOfHeart);
         addHeartAnimation(indexOfHeartAnimation);
-    }else if(valueOfLikedByUserIsNotZero(indexOfHeartNumber)){
+    } else if (valueOfLikedByUserIsNotZero(indexOfHeartNumber)) {
         subtractLikedByUserByOne(indexOfHeartNumber);
         unfillLikeBtn(indexOfHeart);
         removeHeartAnimation(indexOfHeartAnimation);
     }
-    
+
 }
-function valueOfLikedByUserIsZero(indexOfHeartNumber){
+function valueOfLikedByUserIsZero(indexOfHeartNumber) {
     return usersPost[indexOfHeartNumber].likedByUser == 0;
 }
-function incrementsLikedByUserByOne(indexOfHeartNumber){
+function incrementsLikedByUserByOne(indexOfHeartNumber) {
     usersPost[indexOfHeartNumber].likedByUser++;
 }
-function valueOfLikedByUserIsNotZero(indexOfHeartNumber){
+function valueOfLikedByUserIsNotZero(indexOfHeartNumber) {
     return usersPost[indexOfHeartNumber].likedByUser !== 0;
 }
-function subtractLikedByUserByOne(indexOfHeartNumber){
+function subtractLikedByUserByOne(indexOfHeartNumber) {
     usersPost[indexOfHeartNumber].likedByUser--;
 }
 
 
-function addHeartAnimation(i){
+function addHeartAnimation(i) {
     let classHeartStroke = document.getElementById(`${i}`);
     classHeartStroke.classList.add('active');
 }
 
-function toggleHeartAnimation(i){
+function toggleHeartAnimation(i) {
     let classHeartStroke = document.getElementById(`heartStroke${i}`);
     classHeartStroke.classList.toggle('active');
 }
 
-function removeHeartAnimation(i){
+function removeHeartAnimation(i) {
     let classHeartStroke = document.getElementById(`${i}`);
     classHeartStroke.classList.remove('active');
 }
 
-function fillLikeBtn(index){
+function fillLikeBtn(index) {
     var heart = document.getElementById(`${index}`);
     var heartOnlyUseNumberFromIndex = document.getElementById(`heart${OnlyUsesNumbersFromTheIndex(index)}`);
 
-    if (heartAndHeartOnlyUseNumberFromIndexAreTheSame(heart, heartOnlyUseNumberFromIndex)){
+    if (heartAndHeartOnlyUseNumberFromIndexAreTheSame(heart, heartOnlyUseNumberFromIndex)) {
         heart.innerHTML = '<i class="fas fa-heart" id="rightPadding"></i>';
-    }else if (heartAndHeartOnlyUseNumberFromIndexAreNotTheSame(heart, heartOnlyUseNumberFromIndex)){
+    } else if (heartAndHeartOnlyUseNumberFromIndexAreNotTheSame(heart, heartOnlyUseNumberFromIndex)) {
         heart.innerHTML = '<i class="fas fa-heart" id="rightPadding"></i>';
         heartOnlyUseNumberFromIndex.innerHTML = '<i class="fas fa-heart" id="rightPadding"></i>';
     }
 }
 
 
-function unfillLikeBtn(index){
+function unfillLikeBtn(index) {
     var heart = document.getElementById(`${index}`);
     var heartOnlyUseNumberFromIndex = document.getElementById(`heart${OnlyUsesNumbersFromTheIndex(index)}`);
 
-    if (heartAndHeartOnlyUseNumberFromIndexAreTheSame(heart, heartOnlyUseNumberFromIndex)){
+    if (heartAndHeartOnlyUseNumberFromIndexAreTheSame(heart, heartOnlyUseNumberFromIndex)) {
         heart.innerHTML = '<i class="far fa-heart" id="rightPadding"></i>';
-    }else if (heartAndHeartOnlyUseNumberFromIndexAreNotTheSame(heart, heartOnlyUseNumberFromIndex)){
+    } else if (heartAndHeartOnlyUseNumberFromIndexAreNotTheSame(heart, heartOnlyUseNumberFromIndex)) {
         heart.innerHTML = '<i class="far fa-heart" id="rightPadding"></i>';
         heartOnlyUseNumberFromIndex.innerHTML = '<i class="far fa-heart" id="rightPadding"></i>';
     }
-    
+
 }
 
-function heartAndHeartOnlyUseNumberFromIndexAreTheSame(heart, heartOnlyUseNumberFromIndex){
+function heartAndHeartOnlyUseNumberFromIndexAreTheSame(heart, heartOnlyUseNumberFromIndex) {
     return heart == heartOnlyUseNumberFromIndex;
 }
 
-function heartAndHeartOnlyUseNumberFromIndexAreNotTheSame(heart, heartOnlyUseNumberFromIndex){
+function heartAndHeartOnlyUseNumberFromIndexAreNotTheSame(heart, heartOnlyUseNumberFromIndex) {
     return heart !== heartOnlyUseNumberFromIndex;
 }
 
 
-function checkIfDoubleClickOnPostImg(i){
+function checkIfDoubleClickOnPostImg(i) {
     let indexHeart = `heart${i}`;
     toggleHeartAnimation(i);
     likesOrUnlikesTheSelectedComment(indexHeart, OnlyUsesNumbersFromTheIndex(i));
 }
 
-function openComment(indexOfComment){
+function openComment(indexOfComment) {
     drawContainerWhenACommentHasBeenOpened(indexOfComment);
     insertUsersPostIconInOpenComment(indexOfComment);
     insertCommentsInOpenComment(indexOfComment);
@@ -386,36 +387,47 @@ function openComment(indexOfComment){
     insertInputFieldInOpenComment(indexOfComment);
 }
 
-function closesComment(){
+function closesComment() {
     let section = document.getElementById('openedCommentSection');
     section.remove();
 }
 
-function focusOnCommentInputWhenCommentHasBeenOpenend(index){
+function focusOnCommentInputWhenCommentHasBeenOpenend(index) {
     document.getElementById(`commentInputOpenedComment${index}`).focus();
+}
+
+function searchFilter() {
+    let searchInput = document.getElementById('searchInput').value.toLowerCase();
+    document.getElementById('insertPost').innerHTML = '';
+    for (let i = 0; i < arrayUserImages.length; i++) {
+        let test = usersPost[i].description;
+        if (test.toLowerCase().includes(searchInput)) {
+            inserPost(i);
+            insertDescription(i);
+        }
+    }
+    console.log(searchInput);
 }
 
 // ------------------------Below are .innerHTML code blocks--------------------------------- \\
 
-function insertCommentsInOpenComment(indexOfComment){
+function insertCommentsInOpenComment(indexOfComment) {
     checkIfCommentInputIsFilled(indexOfComment);
-    document.getElementById(`insertOnlyComments`).innerHTML =``;
+    document.getElementById(`insertOnlyComments`).innerHTML = ``;
     for (let i = 0; i < usersPost[indexOfComment].comments.length; i++) {
-        let comment = usersPost[indexOfComment].comments[i];
-        
         document.getElementById(`insertOnlyComments`).innerHTML += `
         <div class="userComment marginLeftAndRight" id="maxWidthOpenedComment${indexOfComment}${i}">
             <div id="userCommentBoxOpenedComment${indexOfComment}${i}" class="row"><span id="userNameComment">${usersPost[indexOfComment].comments[i].username}</span> <p class="userCommentText"id="userCommentOpenedComment${indexOfComment}${i}">${usersPost[indexOfComment].comments[i].comment}</p></div>
             
         </div>
     `;
-    checkIfCommentRowIsTooWide(`userCommentBoxOpenedComment${indexOfComment}${i}`,`OpenedComment${indexOfComment}${i}`, `insertCommentsInOpenComment`);
+        checkIfCommentRowIsTooWide(`userCommentBoxOpenedComment${indexOfComment}${i}`, `OpenedComment${indexOfComment}${i}`, `insertCommentsInOpenComment`);
     }
 }
 
-function insertSocialToolsInOpenComment(indexOfComment){
-    document.getElementById(`insertCommentsInOpenCommentLowerHalf`).innerHTML='';
-    document.getElementById(`insertCommentsInOpenCommentLowerHalf`).innerHTML+=`
+function insertSocialToolsInOpenComment(indexOfComment) {
+    document.getElementById(`insertCommentsInOpenCommentLowerHalf`).innerHTML = '';
+    document.getElementById(`insertCommentsInOpenCommentLowerHalf`).innerHTML += `
 
     <div class="socialToolsContainer marginLeftAndRight">
         <div>
@@ -427,16 +439,16 @@ function insertSocialToolsInOpenComment(indexOfComment){
     </div>`
 }
 //This function is there for if the user has liked a comment before that it stays filled if the requirments match the criteria
-function heartSymbolForOpenedComment(i){
-    if(usersPost[i].likedByUser == 0){
+function heartSymbolForOpenedComment(i) {
+    if (usersPost[i].likedByUser == 0) {
         return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heartOpenedComment${i}', '${i}','heartStrokeOpenedComment${i}')" id="heartOpenedComment${i}"><i class="far fa-heart" id="rightPadding"></i></a>`
-    }else if(usersPost[i].likedByUser > 0){
+    } else if (usersPost[i].likedByUser > 0) {
         return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heartOpenedComment${i}', '${i}', 'heartStrokeOpenedComment${i}')" id="heartOpenedComment${i}"><i class="fas fa-heart" id="rightPadding"></i></a>`
     }
 }
 
-function insertInputFieldInOpenComment(indexOfComment){
-    document.getElementById(`insertCommentsInOpenCommentLowerHalf`).innerHTML+=`
+function insertInputFieldInOpenComment(indexOfComment) {
+    document.getElementById(`insertCommentsInOpenCommentLowerHalf`).innerHTML += `
     <div class="commentInputContainer">
         <div class="posRelative">
             <div class="emojiPosAbsolute">
@@ -452,9 +464,9 @@ function insertInputFieldInOpenComment(indexOfComment){
     </div>`
 }
 
-function drawContainerWhenACommentHasBeenOpened(indexOfComment){
+function drawContainerWhenACommentHasBeenOpened(indexOfComment) {
     console.log(indexOfComment);
-    document.body.innerHTML +=`
+    document.body.innerHTML += `
     <section class="blackBackground" id="openedCommentSection">
         <a onclick="closesComment()" class="closesSection"> X </a>
         <div class="openedComment">
@@ -478,9 +490,9 @@ function drawContainerWhenACommentHasBeenOpened(indexOfComment){
     </section>`
 }
 
-function insertUsersPostIconInOpenComment(indexOfComment){
-    document.getElementById(`insertCommentsInOpenComment`).innerHTML =``;
-    document.getElementById(`insertCommentsInOpenComment`).innerHTML +=`
+function insertUsersPostIconInOpenComment(indexOfComment) {
+    document.getElementById(`insertCommentsInOpenComment`).innerHTML = ``;
+    document.getElementById(`insertCommentsInOpenComment`).innerHTML += `
     <div class="postHeaderOpenedCommentWrapper">
         <div class="postHeaderOpenedComment">
             <div class="otherUserWrapper">
@@ -501,8 +513,8 @@ function insertUsersPostIconInOpenComment(indexOfComment){
 }
 
 // Loops through the emojiArray to display the emojies in the emoji container
-function displayEmoji(emojiIndex, indexOfSelectedPost){
-    document.getElementById(emojiIndex).innerHTML ='';
+function displayEmoji(emojiIndex, indexOfSelectedPost) {
+    document.getElementById(emojiIndex).innerHTML = '';
     for (let i = 0; i < emojiArray.length; i++) {
         const element = emojiArray[i];
         document.getElementById(emojiIndex).innerHTML += `
@@ -511,10 +523,16 @@ function displayEmoji(emojiIndex, indexOfSelectedPost){
     }
 }
 
-function insertPost(){
-    document.getElementById('insertPost').innerHTML ='';
+function insertPostLoop() {
+    document.getElementById('insertPost').innerHTML = '';
     for (let i = 0; i < arrayUserImages.length; i++) {
-        document.getElementById('insertPost').innerHTML +=`
+        inserPost(i);
+        insertDescription(i);
+    }
+}
+
+function inserPost(i) {
+    document.getElementById('insertPost').innerHTML += `
         <div class="post">
             <div>
                 <div class="postHeader">
@@ -569,20 +587,18 @@ function insertPost(){
                      
                 </div>
         `;
-        insertDescription(i);
-    }
 }
 //This function is there for if the user has liked a comment before that it stays filled if the requirments have been matched
-function heartSymbol(i){
-    if(usersPost[i].likedByUser == 0){
+function heartSymbol(i) {
+    if (usersPost[i].likedByUser == 0) {
         return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}', 'heartStroke${i}')" id="heart${i}"><i class="far fa-heart" id="rightPadding"></i></a>`
-    }else if(usersPost[i].likedByUser > 0){
+    } else if (usersPost[i].likedByUser > 0) {
         return innerHTML = `<a class="heart${i}" onclick="likesOrUnlikesTheSelectedComment('heart${i}', '${i}', 'heartStroke${i}')" id="heart${i}"><i class="fas fa-heart" id="rightPadding"></i></a>`
     }
 }
 
-function insertDescription(ind){
-    document.getElementById(`insertDescription${ind}`).innerHTML= ``;
+function insertDescription(ind) {
+    document.getElementById(`insertDescription${ind}`).innerHTML = ``;
     document.getElementById(`insertDescription${ind}`).innerHTML += `
         ${usersPost[ind].description}
     `;
@@ -590,24 +606,24 @@ function insertDescription(ind){
 
 // Loops through the JSON userPost Array and inserts the comment in the correct user post index
 // function insertComment(ind){
-    
+
 //     for (let i = 0; i < usersPost[ind].comments.length; i++) {
 //         let comment = usersPost[ind].comments[i];
-        
+
 //         document.getElementById(`insertComment${ind}`).innerHTML += `
 //         <div class="userComment" id="maxWidth${ind}${i}">
 //             <div id="userCommentBox${ind}${i}" class="row"><span id="userNameComment">${usersPost[ind].comments[i].username}</span> <p class="userCommentText"id="userComment${ind}${i}">${usersPost[ind].comments[i].comment}</p></div>
-            
+
 //         </div>
 //     `;
 //     checkIfCommentRowIsTooWide(`userCommentBox${ind}${i}`,`${ind}${i}`, `maxWidth${ind}${i}`);
 //     }
 // }
 
-function insertImgInStories(){
-    document.getElementById('insertImgStoryHere').innerHTML ='';
+function insertImgInStories() {
+    document.getElementById('insertImgStoryHere').innerHTML = '';
     for (let i = 0; i < arrayUserImages.length; i++) {
-        document.getElementById('insertImgStoryHere').innerHTML +=`
+        document.getElementById('insertImgStoryHere').innerHTML += `
         <div class="userIconAndNameContainer">
             <div class="userStoryIcon" id="userImageStory">
                 <img src="${arrayUserImages[i]}" alt="">
@@ -615,14 +631,14 @@ function insertImgInStories(){
             <span class="userNameStory">${arrayUserName[i]}</span>
         </div>
     `
-        
+
     };
 }
 
-function insertImgInSuggestions(){
-    document.getElementById('insertSuggestions').innerHTML ='';
+function insertImgInSuggestions() {
+    document.getElementById('insertSuggestions').innerHTML = '';
     for (let i = 0; i < suggestedUsersImg.length; i++) {
-    document.getElementById('insertSuggestions').innerHTML +=`
+        document.getElementById('insertSuggestions').innerHTML += `
         <div class="suggestionsContainer">
             <div class="otherUserWrapper">
                 <div class="otherUserSuggestIcon">
