@@ -121,7 +121,7 @@ function ifSelectedBookMarkIsNotFilledFillItElseEmptyTheFilling(selectedBookMark
 //Checks if the div-container-comment width exceeds the div-post-container width
 function checkIfCommentRowIsTooWide(userCommentBox, index, maxWidth) {
     let desiredWidth = document.getElementById(maxWidth).getBoundingClientRect().width;
-    let commentWidth = document.getElementById(userCommentBox).getBoundingClientRect().width;
+    let commentWidth = document.getElementById(userCommentBox).getBoundingClientRect().width + 18;//+18 is for the margin-left that has been set to 18px.
 
     if (commentWidthIsBiggerThanDesiredWidth(commentWidth, desiredWidth)) {
         addNoTextOverFlow(userCommentBox);
@@ -199,7 +199,9 @@ function submitComment(i) {
     checkIfCommentInputIsFilled(i);
     checksIfThereIsAnOpenedComment(OnlyUsesNumbersFromTheIndex(i));
     setLastChildInArrayCSSElement(i);
+    updateViewAllComments(OnlyUsesNumbersFromTheIndex(i));//Updates the number under 'view all comments' as soon as a new comment has been posted
 }
+
 
 function OnlyUsesNumbersFromTheIndex(i) {
 
@@ -225,8 +227,21 @@ function setLastChildInArrayCSSElement(ind) {
     let lastUserComment = document.getElementById(`maxWidth${ind}${lastCommentIndex}`);
     let secondLastUserComment = document.getElementById(`maxWidth${ind}${secondLastCommentIndex}`);
 
-    secondLastUserComment.classList.remove('newPost');
-    lastUserComment.classList.add('newPost');
+    if(ifCommentsExsist(secondLastCommentIndex, lastUserComment)){
+        secondLastUserComment.classList.remove('newPost');
+        lastUserComment.classList.add('newPost');
+    }
+    
+}
+
+function ifCommentsExsist(secondLastCommentIndex, lastUserComment){
+    return secondLastCommentIndex && lastUserComment !== null;
+}
+
+function updateViewAllComments(i){
+    let viewComments = document.getElementById(`openComment${i}`);
+    viewComments.innerHTML = '';
+    viewComments.innerHTML = `view all ${usersPost[i].comments.length} comments`;
 }
 
 function tooglesActiveOnSearchInputWhenClicked(searchInputID) {
@@ -393,7 +408,7 @@ function closesComment() {
 }
 
 function focusOnCommentInputWhenCommentHasBeenOpenend(index) {
-    document.getElementById(`commentInputOpenedComment${index}`).focus();
+    document.getElementById(`commentInput${index}`).focus();
 }
 
 function searchFilter() {
@@ -432,7 +447,7 @@ function insertSocialToolsInOpenComment(indexOfComment) {
     <div class="socialToolsContainer marginLeftAndRight">
         <div>
             ${heartSymbolForOpenedComment(indexOfComment)}
-            <a onclick="focusOnCommentInputWhenCommentHasBeenOpenend(${indexOfComment})"><i class="far fa-comment rightPadding" id="focusOnComment${indexOfComment}" ></i></a>
+            <a onclick="focusOnCommentInputWhenCommentHasBeenOpenend('OpenedComment${indexOfComment}')"><i class="far fa-comment rightPadding" id="focusOnComment${indexOfComment}" ></i></a>
             <i class="far fa-paper-plane" id="rightPadding"></i>
         </div>
         <a onclick="fillBookMark('bookmMark${indexOfComment}')"><i class="far fa-bookmark" id="bookmMark${indexOfComment}"></i></a>
@@ -559,7 +574,7 @@ function inserPost(i) {
                     <div class="socialToolsContainer">
                         <div>
                             ${heartSymbol(i)}
-                            <a><i class="far fa-comment rightPadding"></i></a>
+                            <a onclick= "focusOnCommentInputWhenCommentHasBeenOpenend(${i})"><i class="far fa-comment rightPadding"></i></a>
                             <i class="far fa-paper-plane" id="rightPadding"></i>
                         </div>
                         <a onclick="fillBookMark('bookmMark${i}')"><i class="far fa-bookmark" id="bookmMark${i}"></i></a>
